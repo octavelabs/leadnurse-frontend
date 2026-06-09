@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { getAllDocuments, uploadDocument, assignDocument, deleteDocument } from '../../../api/documentApi';
 import { getWorkers } from '../../../api/workerApi';
@@ -44,30 +44,30 @@ function UploadModal({ onClose, onUploaded }) {
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Document Title <span className="text-red-500">*</span></label>
-            <input required value={title} onChange={(e) => setTitle(e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. Employment Contract — June 2026" />
+            <input required value={title} onChange={(e) => setTitle(e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700" placeholder="e.g. Employment Contract â€” June 2026" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Description <span className="text-gray-400 font-normal">(optional)</span></label>
-            <textarea rows={2} value={description} onChange={(e) => setDescription(e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Brief description of what this document is…" />
+            <textarea rows={2} value={description} onChange={(e) => setDescription(e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary-700" placeholder="Brief description of what this document isâ€¦" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">File <span className="text-red-500">*</span></label>
-            <div onClick={() => fileRef.current?.click()} className="border-2 border-dashed border-gray-200 rounded-lg p-5 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors">
+            <div onClick={() => fileRef.current?.click()} className="border-2 border-dashed border-gray-200 rounded-lg p-5 text-center cursor-pointer hover:border-blue-400 hover:bg-primary-50 transition-colors">
               <input ref={fileRef} type="file" accept="application/pdf,image/*" className="hidden" onChange={(e) => setFile(e.target.files?.[0] || null)} />
               {file ? (
                 <p className="text-sm text-gray-700 font-medium">{file.name}</p>
               ) : (
                 <>
                   <svg className="w-8 h-8 text-gray-300 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
-                  <p className="text-sm text-gray-500">PDF or Image · Max 10MB</p>
+                  <p className="text-sm text-gray-500">PDF or Image Â· Max 10MB</p>
                 </>
               )}
             </div>
           </div>
           <div className="flex gap-3 pt-1">
-            <button type="submit" disabled={saving || !title.trim() || !file} className="flex-1 bg-blue-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50 flex items-center justify-center gap-2">
+            <button type="submit" disabled={saving || !title.trim() || !file} className="flex-1 bg-primary-700 text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50 flex items-center justify-center gap-2">
               {saving && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
-              {saving ? 'Uploading…' : 'Upload Document'}
+              {saving ? 'Uploadingâ€¦' : 'Upload Document'}
             </button>
             <button type="button" onClick={onClose} className="px-4 py-2 text-sm text-gray-600 border border-gray-200 rounded-lg">Cancel</button>
           </div>
@@ -121,14 +121,14 @@ function AssignModal({ doc, onClose, onAssigned }) {
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600"><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
         </div>
         {loading ? (
-          <div className="flex justify-center py-8"><div className="w-6 h-6 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" /></div>
+          <div className="flex justify-center py-8"><div className="w-6 h-6 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" /></div>
         ) : (
           <div className="flex-1 overflow-y-auto px-6 py-3 space-y-1">
             {workers.map((w) => {
               const alreadySigned = doc.signatures.find((s) => s.userId === w.id && s.status === 'SIGNED');
               return (
                 <label key={w.id} className={`flex items-center gap-3 py-2 cursor-pointer ${alreadySigned ? 'opacity-50' : ''}`}>
-                  <input type="checkbox" checked={selected.has(w.id)} onChange={() => !alreadySigned && toggle(w.id)} disabled={!!alreadySigned} className="accent-blue-600" />
+                  <input type="checkbox" checked={selected.has(w.id)} onChange={() => !alreadySigned && toggle(w.id)} disabled={!!alreadySigned} className="accent-primary-700" />
                   <div>
                     <p className="text-sm font-medium text-gray-900">{w.name}</p>
                     <p className="text-xs text-gray-400">{w.email}</p>
@@ -140,7 +140,7 @@ function AssignModal({ doc, onClose, onAssigned }) {
           </div>
         )}
         <div className="px-6 py-4 border-t border-gray-100 flex gap-3">
-          <button onClick={handleSave} disabled={saving} className="flex-1 bg-blue-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50">{saving ? 'Assigning…' : 'Assign Selected'}</button>
+          <button onClick={handleSave} disabled={saving} className="flex-1 bg-primary-700 text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50">{saving ? 'Assigningâ€¦' : 'Assign Selected'}</button>
           <button onClick={onClose} className="px-4 py-2 text-sm text-gray-600 border border-gray-200 rounded-lg">Cancel</button>
         </div>
       </div>
@@ -179,14 +179,14 @@ export default function DocumentManagement() {
           <h1 className="text-2xl font-bold text-gray-900">Documents for Signing</h1>
           <p className="text-sm text-gray-500 mt-0.5">Upload contracts and policy documents for employees to sign</p>
         </div>
-        <button onClick={() => setShowUpload(true)} className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700">
+        <button onClick={() => setShowUpload(true)} className="inline-flex items-center gap-2 px-4 py-2 bg-primary-700 text-white text-sm font-medium rounded-lg hover:bg-primary-800">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
           Upload Document
         </button>
       </div>
 
       {loading ? (
-        <div className="flex justify-center py-12"><div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" /></div>
+        <div className="flex justify-center py-12"><div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" /></div>
       ) : docs.length === 0 ? (
         <div className="bg-white rounded-xl border border-gray-200 p-12 text-center text-gray-500">No documents uploaded yet.</div>
       ) : (
@@ -207,12 +207,12 @@ export default function DocumentManagement() {
                     </div>
                     <div className="flex items-center gap-4 mt-3">
                       <span className="text-xs text-gray-500">{signed}/{total} signed</span>
-                      <a href={doc.documentUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:underline">View Document</a>
+                      <a href={doc.documentUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-primary-700 hover:underline">View Document</a>
                       <span className="text-xs text-gray-400">Uploaded {new Date(doc.createdAt).toLocaleDateString('en-GB')}</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 flex-shrink-0">
-                    <button onClick={() => setAssignDoc(doc)} className="text-xs bg-blue-50 text-blue-700 hover:bg-blue-100 px-3 py-1.5 rounded-lg font-medium">Assign</button>
+                    <button onClick={() => setAssignDoc(doc)} className="text-xs bg-primary-50 text-primary-800 hover:bg-primary-100 px-3 py-1.5 rounded-lg font-medium">Assign</button>
                     <button onClick={() => handleDelete(doc.id)} disabled={deleting === doc.id} className="text-xs text-red-400 hover:text-red-600 disabled:opacity-50">Delete</button>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getPublicSignoffForm, submitSignoff } from '../api/timesheetSignoffApi';
 
@@ -15,7 +15,7 @@ function StarRating({ value, onChange }) {
           onMouseLeave={() => setHovered(0)}
           className="text-2xl transition-transform hover:scale-110"
         >
-          <span className={n <= (hovered || value) ? 'text-yellow-400' : 'text-gray-200'}>★</span>
+          <span className={n <= (hovered || value) ? 'text-yellow-400' : 'text-gray-200'}>â˜…</span>
         </button>
       ))}
       {value > 0 && (
@@ -68,12 +68,12 @@ export default function TimesheetSignoffPage() {
     } finally { setSubmitting(false); }
   };
 
-  const fmt = (d) => d ? new Date(d).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—';
-  const fmtDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) : '—';
+  const fmt = (d) => d ? new Date(d).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'â€”';
+  const fmtDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) : 'â€”';
 
   if (loading) return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+      <div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" />
     </div>
   );
 
@@ -106,11 +106,8 @@ export default function TimesheetSignoffPage() {
     <div className="min-h-screen bg-gray-50 py-8 px-4">
       <div className="max-w-lg mx-auto">
         <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-            </div>
-            <span className="font-bold text-gray-900 text-lg">Lead Nurse</span>
+          <div className="inline-flex items-center mb-4">
+            <img src="https://leadnurse.co.uk/wp-content/uploads/2026/02/Lead-Nurse-Logo-e1771949504571-1024x377.png" alt="Lead Nurse" className="h-8 w-auto object-contain" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900">Timesheet Sign-off</h1>
           <p className="text-gray-500 text-sm mt-1">Please confirm the attendance details below</p>
@@ -126,7 +123,7 @@ export default function TimesheetSignoffPage() {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-500">Shift</span>
-              <span className="font-medium text-gray-900">{context?.shiftTitle || '—'}</span>
+              <span className="font-medium text-gray-900">{context?.shiftTitle || 'â€”'}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-500">Facility</span>
@@ -147,7 +144,7 @@ export default function TimesheetSignoffPage() {
             {context?.hoursWorked && (
               <div className="flex justify-between pt-2 border-t border-gray-100">
                 <span className="text-gray-500">Total Hours</span>
-                <span className="font-bold text-blue-700 text-base">{context.hoursWorked.toFixed(1)}h</span>
+                <span className="font-bold text-primary-800 text-base">{context.hoursWorked.toFixed(1)}h</span>
               </div>
             )}
           </div>
@@ -160,7 +157,7 @@ export default function TimesheetSignoffPage() {
             <input
               value={form.supervisorName}
               onChange={(e) => setField('supervisorName', e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700"
               placeholder="Your full name"
             />
           </div>
@@ -179,8 +176,8 @@ export default function TimesheetSignoffPage() {
               rows={3}
               value={form.feedback}
               onChange={(e) => setField('feedback', e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Any comments on the worker's performance, punctuality, or conduct…"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary-700"
+              placeholder="Any comments on the worker's performance, punctuality, or conductâ€¦"
             />
           </div>
 
@@ -191,7 +188,7 @@ export default function TimesheetSignoffPage() {
                 type="checkbox"
                 checked={form.confirmed}
                 onChange={(e) => setField('confirmed', e.target.checked)}
-                className="mt-0.5 w-4 h-4 accent-blue-600 flex-shrink-0"
+                className="mt-0.5 w-4 h-4 accent-primary-700 flex-shrink-0"
               />
               <span className="text-sm text-gray-700 leading-relaxed">
                 I confirm that <strong>{context?.workerName}</strong> attended and completed this shift as described above. I am authorised to sign off this timesheet.
@@ -206,10 +203,10 @@ export default function TimesheetSignoffPage() {
           <button
             type="submit"
             disabled={!form.confirmed || submitting}
-            className="w-full bg-blue-600 text-white py-3 rounded-xl text-sm font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full bg-primary-700 text-white py-3 rounded-xl text-sm font-semibold hover:bg-primary-800 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {submitting && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
-            {submitting ? 'Submitting…' : 'Confirm & Sign Off Timesheet'}
+            {submitting ? 'Submittingâ€¦' : 'Confirm & Sign Off Timesheet'}
           </button>
           <p className="text-xs text-gray-400 text-center pb-6">Once confirmed, this cannot be undone. Contact the employer if there is an error.</p>
         </form>

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { getWorker } from '../../../api/workerApi';
 import { getWorkerReferences, addReference, sendReferenceRequest, deleteReference, getReferenceResponse } from '../../../api/referenceApi';
 import ComplianceBadge from '../../../components/workforce/ComplianceBadge';
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function InfoRow({ label, value }) {
   if (!value) return null;
@@ -50,7 +50,7 @@ function RatingBar({ label, value }) {
       <span className="text-sm text-gray-600 w-40 flex-shrink-0">{label}</span>
       <div className="flex gap-1">
         {[1, 2, 3, 4, 5].map((n) => (
-          <div key={n} className={`w-7 h-7 rounded text-xs font-semibold flex items-center justify-center ${n <= value ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-400'}`}>{n}</div>
+          <div key={n} className={`w-7 h-7 rounded text-xs font-semibold flex items-center justify-center ${n <= value ? 'bg-primary-700 text-white' : 'bg-gray-100 text-gray-400'}`}>{n}</div>
         ))}
       </div>
       <span className="text-xs text-gray-400">{value}/5</span>
@@ -58,7 +58,7 @@ function RatingBar({ label, value }) {
   );
 }
 
-// ─── Add Reference Modal ──────────────────────────────────────────────────────
+// â”€â”€â”€ Add Reference Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function AddReferenceModal({ workerId, onClose, onAdded }) {
   const [form, setForm] = useState({ refereeName: '', refereeEmail: '', refereeJobTitle: '', refereeOrganisation: '', relationship: 'LINE_MANAGER', employmentStart: '', employmentEnd: '' });
@@ -93,43 +93,43 @@ function AddReferenceModal({ workerId, onClose, onAdded }) {
           <div className="grid grid-cols-1 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Referee Full Name <span className="text-red-500">*</span></label>
-              <input required value={form.refereeName} onChange={(e) => setField('refereeName', e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. Jane Smith" />
+              <input required value={form.refereeName} onChange={(e) => setField('refereeName', e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700" placeholder="e.g. Jane Smith" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Referee Email <span className="text-red-500">*</span></label>
-              <input required type="email" value={form.refereeEmail} onChange={(e) => setField('refereeEmail', e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="jane@example.com" />
+              <input required type="email" value={form.refereeEmail} onChange={(e) => setField('refereeEmail', e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700" placeholder="jane@example.com" />
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Referee Job Title</label>
-                <input value={form.refereeJobTitle} onChange={(e) => setField('refereeJobTitle', e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. Ward Manager" />
+                <input value={form.refereeJobTitle} onChange={(e) => setField('refereeJobTitle', e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700" placeholder="e.g. Ward Manager" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Organisation</label>
-                <input value={form.refereeOrganisation} onChange={(e) => setField('refereeOrganisation', e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. NHS Trust" />
+                <input value={form.refereeOrganisation} onChange={(e) => setField('refereeOrganisation', e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700" placeholder="e.g. NHS Trust" />
               </div>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Relationship to Applicant</label>
-              <select value={form.relationship} onChange={(e) => setField('relationship', e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <select value={form.relationship} onChange={(e) => setField('relationship', e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700">
                 {RELATIONSHIP_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
               </select>
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Employment Start</label>
-                <input type="date" value={form.employmentStart} onChange={(e) => setField('employmentStart', e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="date" value={form.employmentStart} onChange={(e) => setField('employmentStart', e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Employment End</label>
-                <input type="date" value={form.employmentEnd} onChange={(e) => setField('employmentEnd', e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="date" value={form.employmentEnd} onChange={(e) => setField('employmentEnd', e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700" />
               </div>
             </div>
           </div>
           <div className="flex gap-3 pt-2">
-            <button type="submit" disabled={saving} className="flex-1 bg-blue-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50 flex items-center justify-center gap-2">
+            <button type="submit" disabled={saving} className="flex-1 bg-primary-700 text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50 flex items-center justify-center gap-2">
               {saving && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
-              {saving ? 'Adding…' : 'Add Reference'}
+              {saving ? 'Addingâ€¦' : 'Add Reference'}
             </button>
             <button type="button" onClick={onClose} className="px-4 py-2 text-sm text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-50">Cancel</button>
           </div>
@@ -139,7 +139,7 @@ function AddReferenceModal({ workerId, onClose, onAdded }) {
   );
 }
 
-// ─── View Response Modal ──────────────────────────────────────────────────────
+// â”€â”€â”€ View Response Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function ViewResponseModal({ referenceId, onClose }) {
   const [data, setData] = useState(null);
@@ -155,7 +155,7 @@ function ViewResponseModal({ referenceId, onClose }) {
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 sticky top-0 bg-white">
           <div>
             <h2 className="font-semibold text-gray-900">Reference Response</h2>
-            {data && <p className="text-xs text-gray-500 mt-0.5">From {data.refereeName} · {data.refereeOrganisation || data.refereeEmail}</p>}
+            {data && <p className="text-xs text-gray-500 mt-0.5">From {data.refereeName} Â· {data.refereeOrganisation || data.refereeEmail}</p>}
           </div>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
@@ -163,7 +163,7 @@ function ViewResponseModal({ referenceId, onClose }) {
         </div>
 
         {loading ? (
-          <div className="flex justify-center py-12"><div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" /></div>
+          <div className="flex justify-center py-12"><div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" /></div>
         ) : !data?.response ? (
           <div className="p-6 text-center text-gray-500 text-sm">No response data found.</div>
         ) : (
@@ -201,7 +201,7 @@ function ViewResponseModal({ referenceId, onClose }) {
               </div>
             )}
             <div className="bg-gray-50 rounded-lg p-3 text-xs text-gray-500 border-t border-gray-100">
-              Submitted {new Date(data.response.submittedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })} · Declaration signed
+              Submitted {new Date(data.response.submittedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })} Â· Declaration signed
             </div>
           </div>
         )}
@@ -210,7 +210,7 @@ function ViewResponseModal({ referenceId, onClose }) {
   );
 }
 
-// ─── References Section ───────────────────────────────────────────────────────
+// â”€â”€â”€ References Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function ReferencesSection({ workerId }) {
   const [references, setReferences] = useState([]);
@@ -231,7 +231,7 @@ function ReferencesSection({ workerId }) {
     try {
       const res = await sendReferenceRequest(id);
       setReferences((prev) => prev.map((r) => r.id === id ? res.data.data : r));
-      toast.success('Reference request sent — link generated');
+      toast.success('Reference request sent â€” link generated');
     } catch (err) {
       toast.error(err.response?.data?.message || 'Failed to send request');
     } finally {
@@ -267,7 +267,7 @@ function ReferencesSection({ workerId }) {
           </div>
           <button
             onClick={() => setShowAdd(true)}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary-700 text-white text-xs font-medium rounded-lg hover:bg-primary-800 transition-colors"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
             Add Reference
@@ -275,7 +275,7 @@ function ReferencesSection({ workerId }) {
         </div>
 
         {loading ? (
-          <div className="flex justify-center py-6"><div className="w-6 h-6 border-3 border-blue-600 border-t-transparent rounded-full animate-spin" /></div>
+          <div className="flex justify-center py-6"><div className="w-6 h-6 border-3 border-primary-700 border-t-transparent rounded-full animate-spin" /></div>
         ) : references.length === 0 ? (
           <div className="text-center py-8">
             <p className="text-sm text-gray-400">No references added yet.</p>
@@ -294,30 +294,30 @@ function ReferencesSection({ workerId }) {
                     <p className="text-xs text-gray-500 mt-0.5">{ref.refereeEmail}</p>
                     {(ref.refereeJobTitle || ref.refereeOrganisation) && (
                       <p className="text-xs text-gray-400 mt-0.5">
-                        {[ref.refereeJobTitle, ref.refereeOrganisation].filter(Boolean).join(' · ')}
+                        {[ref.refereeJobTitle, ref.refereeOrganisation].filter(Boolean).join(' Â· ')}
                       </p>
                     )}
                     {ref.requestedAt && (
                       <p className="text-xs text-gray-400 mt-0.5">
                         Sent {new Date(ref.requestedAt).toLocaleDateString('en-GB')}
-                        {ref.completedAt && ` · Completed ${new Date(ref.completedAt).toLocaleDateString('en-GB')}`}
+                        {ref.completedAt && ` Â· Completed ${new Date(ref.completedAt).toLocaleDateString('en-GB')}`}
                       </p>
                     )}
                   </div>
                   <div className="flex items-center gap-2 flex-shrink-0">
                     {ref.status === 'COMPLETED' && (
-                      <button onClick={() => setViewId(ref.id)} className="text-xs text-blue-600 hover:underline font-medium">View Response</button>
+                      <button onClick={() => setViewId(ref.id)} className="text-xs text-primary-700 hover:underline font-medium">View Response</button>
                     )}
                     {(ref.status === 'SENT' && ref.token) && (
-                      <button onClick={() => copyLink(ref.token)} className="text-xs text-gray-500 hover:text-blue-600 font-medium">Copy Link</button>
+                      <button onClick={() => copyLink(ref.token)} className="text-xs text-gray-500 hover:text-primary-700 font-medium">Copy Link</button>
                     )}
                     {(ref.status === 'PENDING' || ref.status === 'SENT' || ref.status === 'EXPIRED') && (
                       <button
                         onClick={() => handleSend(ref.id)}
                         disabled={sending === ref.id}
-                        className="text-xs bg-blue-50 text-blue-700 hover:bg-blue-100 px-2 py-1 rounded font-medium disabled:opacity-50"
+                        className="text-xs bg-primary-50 text-primary-800 hover:bg-primary-100 px-2 py-1 rounded font-medium disabled:opacity-50"
                       >
-                        {sending === ref.id ? '…' : ref.status === 'PENDING' ? 'Send Request' : 'Resend'}
+                        {sending === ref.id ? 'â€¦' : ref.status === 'PENDING' ? 'Send Request' : 'Resend'}
                       </button>
                     )}
                     <button
@@ -341,7 +341,7 @@ function ReferencesSection({ workerId }) {
   );
 }
 
-// ─── Main WorkerDetail page ───────────────────────────────────────────────────
+// â”€â”€â”€ Main WorkerDetail page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export default function WorkerDetail() {
   const { id } = useParams();
@@ -358,7 +358,7 @@ export default function WorkerDetail() {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+      <div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" />
     </div>
   );
 
@@ -377,7 +377,7 @@ export default function WorkerDetail() {
     <div className="p-6 max-w-5xl mx-auto space-y-6">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm text-gray-500">
-        <Link to="/admin/workforce/workers" className="hover:text-blue-600">Worker Records</Link>
+        <Link to="/admin/workforce/workers" className="hover:text-primary-700">Worker Records</Link>
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
         <span className="text-gray-900">{worker.name}</span>
       </div>
@@ -388,7 +388,7 @@ export default function WorkerDetail() {
           {worker.avatarUrl ? (
             <img src={worker.avatarUrl} alt={worker.name} className="w-16 h-16 rounded-full object-cover" />
           ) : (
-            <div className="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center text-white text-xl font-bold">{initials}</div>
+            <div className="w-16 h-16 rounded-full bg-primary-700 flex items-center justify-center text-white text-xl font-bold">{initials}</div>
           )}
         </div>
         <div className="flex-1">
@@ -399,7 +399,7 @@ export default function WorkerDetail() {
           <p className="text-gray-500 text-sm mt-0.5">{worker.email}</p>
           <div className="flex flex-wrap gap-1.5 mt-2">
             {worker.workerRoles?.map((wr) => (
-              <span key={wr.id} className="text-xs bg-blue-50 text-blue-700 border border-blue-100 px-2 py-0.5 rounded-full">{wr.role.name}</span>
+              <span key={wr.id} className="text-xs bg-primary-50 text-primary-800 border border-primary-100 px-2 py-0.5 rounded-full">{wr.role.name}</span>
             ))}
             {worker.workerRoles?.length === 0 && <span className="text-xs text-gray-400">No roles assigned</span>}
           </div>
@@ -443,7 +443,7 @@ export default function WorkerDetail() {
                   <div className="flex items-center gap-2">
                     {c.expiryDate && <span className="text-xs text-gray-400">{new Date(c.expiryDate).toLocaleDateString('en-GB')}</span>}
                     {c.documentUrl && (
-                      <a href={c.documentUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-xs text-blue-600 hover:text-blue-700" title="View document">
+                      <a href={c.documentUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-xs text-primary-700 hover:text-primary-800" title="View document">
                         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -489,7 +489,7 @@ export default function WorkerDetail() {
                       <span className={`text-xs font-medium px-2 py-0.5 rounded ${
                         a.status === 'CONFIRMED' ? 'bg-green-100 text-green-800' :
                         a.status === 'PENDING'   ? 'bg-yellow-100 text-yellow-800' :
-                        a.status === 'COMPLETED' ? 'bg-blue-100 text-blue-800' :
+                        a.status === 'COMPLETED' ? 'bg-primary-100 text-blue-800' :
                         'bg-gray-100 text-gray-600'
                       }`}>{a.status}</span>
                     </td>

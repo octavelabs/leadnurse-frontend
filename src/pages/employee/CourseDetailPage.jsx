@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { getCourseById } from '../../api/courseApi';
@@ -9,11 +9,11 @@ import ProgressBar from '../../components/dashboard/ProgressBar';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 
 const SLIDE_TYPE_ICONS = {
-  TITLE:       '🎯',
-  CONTENT:     '📄',
-  BULLET_LIST: '📋',
-  IMAGE:       '🖼',
-  QUOTE:       '💬',
+  TITLE:       'ðŸŽ¯',
+  CONTENT:     'ðŸ“„',
+  BULLET_LIST: 'ðŸ“‹',
+  IMAGE:       'ðŸ–¼',
+  QUOTE:       'ðŸ’¬',
 };
 
 export default function CourseDetailPage() {
@@ -70,7 +70,7 @@ export default function CourseDetailPage() {
   return (
     <div className="space-y-6">
       <div>
-        <Link to="/courses" className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1 mb-4">
+        <Link to="/courses" className="text-sm text-primary-700 hover:text-primary-800 flex items-center gap-1 mb-4">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
           Back to courses
         </Link>
@@ -82,8 +82,8 @@ export default function CourseDetailPage() {
               <p className="text-gray-600">{course.description}</p>
             </div>
             {enrolled ? <Badge variant="green">Enrolled</Badge> : (
-              <button onClick={handleEnroll} disabled={enrolling} className="px-5 py-2.5 bg-blue-600 text-white rounded-xl font-semibold text-sm hover:bg-blue-700 disabled:opacity-50">
-                {enrolling ? 'Enrolling…' : 'Enrol Now'}
+              <button onClick={handleEnroll} disabled={enrolling} className="px-5 py-2.5 bg-primary-700 text-white rounded-xl font-semibold text-sm hover:bg-primary-800 disabled:opacity-50">
+                {enrolling ? 'Enrollingâ€¦' : 'Enrol Now'}
               </button>
             )}
           </div>
@@ -96,7 +96,7 @@ export default function CourseDetailPage() {
 
           <div className="mt-5 flex flex-wrap gap-4 text-sm text-gray-600">
             <span className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+              <svg className="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
               {usesChapters ? `${chapters.length} chapters` : `${totalSlides} lessons`}
             </span>
             <span className="flex items-center gap-1.5">
@@ -126,7 +126,7 @@ export default function CourseDetailPage() {
             {resumeSlide && (
               <button
                 onClick={() => navigate(`/courses/${id}/lessons/${resumeSlide.id}`)}
-                className="px-4 py-1.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700"
+                className="px-4 py-1.5 bg-primary-700 text-white text-sm font-medium rounded-lg hover:bg-primary-800"
               >
                 {completedCount > 0 ? 'Continue' : 'Start Course'}
               </button>
@@ -144,7 +144,7 @@ export default function CourseDetailPage() {
                       onClick={() => setExpandedChapter(isExpanded ? null : ch.id)}
                       className="w-full flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-left transition-colors"
                     >
-                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0 ${chCompleted === ch.lessons.length && ch.lessons.length > 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'}`}>
+                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0 ${chCompleted === ch.lessons.length && ch.lessons.length > 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-primary-100 text-primary-800'}`}>
                         {chCompleted === ch.lessons.length && ch.lessons.length > 0
                           ? <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                           : ci + 1
@@ -152,7 +152,7 @@ export default function CourseDetailPage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-semibold text-gray-900">{ch.title}</p>
-                        <p className="text-xs text-gray-400 mt-0.5">{ch.lessons.length} slides{ch.quiz ? ' · quiz' : ''} · {chCompleted}/{ch.lessons.length} done</p>
+                        <p className="text-xs text-gray-400 mt-0.5">{ch.lessons.length} slides{ch.quiz ? ' Â· quiz' : ''} Â· {chCompleted}/{ch.lessons.length} done</p>
                       </div>
                       <svg className={`w-4 h-4 text-gray-400 transition-transform flex-shrink-0 ${isExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                     </button>
@@ -165,19 +165,19 @@ export default function CourseDetailPage() {
                             <button
                               key={slide.id}
                               onClick={() => navigate(`/courses/${id}/lessons/${slide.id}`)}
-                              className="w-full flex items-center gap-3 px-8 py-2.5 hover:bg-blue-50 text-left transition-colors"
+                              className="w-full flex items-center gap-3 px-8 py-2.5 hover:bg-primary-50 text-left transition-colors"
                             >
                               <span className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 ${isDone ? 'bg-emerald-100 text-emerald-600' : 'bg-white border border-gray-200 text-gray-400'}`}>
-                                {isDone ? '✓' : si + 1}
+                                {isDone ? 'âœ“' : si + 1}
                               </span>
-                              <span className="mr-1">{SLIDE_TYPE_ICONS[slide.slideType] || '📄'}</span>
+                              <span className="mr-1">{SLIDE_TYPE_ICONS[slide.slideType] || 'ðŸ“„'}</span>
                               <span className={`text-sm flex-1 ${isDone ? 'text-gray-400 line-through' : 'text-gray-700'}`}>{slide.title}</span>
                             </button>
                           );
                         })}
                         {ch.quiz && (
                           <div className="flex items-center gap-3 px-8 py-2.5 text-xs text-purple-600 font-medium">
-                            <span>✦</span>
+                            <span>âœ¦</span>
                             <span>Chapter Quiz ({ch.quiz.questions?.length} questions)</span>
                           </div>
                         )}

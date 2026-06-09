@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../../api/axios';
 
 function StatCard({ label, value, sub, color = 'blue', to }) {
-  const colorMap = { blue: 'bg-blue-50 text-blue-700', green: 'bg-green-50 text-green-700', yellow: 'bg-yellow-50 text-yellow-700', red: 'bg-red-50 text-red-700' };
+  const colorMap = { blue: 'bg-primary-50 text-primary-800', green: 'bg-green-50 text-green-700', yellow: 'bg-yellow-50 text-yellow-700', red: 'bg-red-50 text-red-700' };
   const content = (
     <div className="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-sm transition-shadow">
       <p className="text-sm text-gray-500">{label}</p>
-      <p className={`text-3xl font-bold mt-1 ${colorMap[color].split(' ')[1]}`}>{value ?? '—'}</p>
+      <p className={`text-3xl font-bold mt-1 ${colorMap[color].split(' ')[1]}`}>{value ?? 'â€”'}</p>
       {sub && <p className="text-xs text-gray-400 mt-1">{sub}</p>}
     </div>
   );
@@ -22,7 +22,7 @@ export default function WorkforceDashboard() {
     api.get('/analytics/workforce').then((r) => setStats(r.data.data)).finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div className="flex items-center justify-center h-64"><div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" /></div>;
+  if (loading) return <div className="flex items-center justify-center h-64"><div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" /></div>;
 
   return (
     <div className="p-6 max-w-7xl mx-auto space-y-6">
@@ -43,7 +43,7 @@ export default function WorkforceDashboard() {
           label="References Awaiting Response"
           value={stats?.referencesAwaitingResponse}
           color="yellow"
-          sub="Pending or sent — no reply yet"
+          sub="Pending or sent â€” no reply yet"
           to="/admin/workforce/references"
         />
         <StatCard
@@ -86,7 +86,7 @@ export default function WorkforceDashboard() {
 
       <div className="bg-white rounded-xl border border-gray-200 p-5">
         <h2 className="font-semibold text-gray-900 mb-2">Monthly Hours</h2>
-        <p className="text-3xl font-bold text-blue-700">{(stats?.monthlyHours || 0).toFixed(1)}</p>
+        <p className="text-3xl font-bold text-primary-800">{(stats?.monthlyHours || 0).toFixed(1)}</p>
         <p className="text-sm text-gray-500 mt-1">Total hours worked this month across {stats?.monthlyAttendanceCount} shifts</p>
       </div>
     </div>

@@ -1,35 +1,35 @@
-import React, { useEffect, useState, useCallback } from 'react';
+﻿import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { getLessonById } from '../../api/lessonApi';
 import { markLessonComplete } from '../../api/progressApi';
 import { getChapterQuiz, submitChapterQuiz } from '../../api/chapterApi';
 
-// ─── Theme helpers ────────────────────────────────────────────────────────────
+// â”€â”€â”€ Theme helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const THEME_BG = {
   white:   'bg-white text-gray-900',
-  blue:    'bg-gradient-to-br from-blue-600 to-blue-800 text-white',
+  blue:    'bg-gradient-to-br from-primary-700 to-primary-800 text-white',
   dark:    'bg-gray-900 text-white',
   purple:  'bg-gradient-to-br from-purple-700 to-purple-900 text-white',
   emerald: 'bg-gradient-to-br from-emerald-600 to-emerald-800 text-white',
 };
 const THEME_ACCENT = {
-  white:   'bg-blue-600',
+  white:   'bg-primary-700',
   blue:    'bg-white/20',
-  dark:    'bg-blue-500',
+  dark:    'bg-primary-600',
   purple:  'bg-white/20',
   emerald: 'bg-white/20',
 };
 const THEME_MUTED = {
   white:   'text-gray-500',
-  blue:    'text-blue-200',
+  blue:    'text-primary-200',
   dark:    'text-gray-400',
   purple:  'text-purple-200',
   emerald: 'text-emerald-200',
 };
 
-// ─── Slide renderers ──────────────────────────────────────────────────────────
+// â”€â”€â”€ Slide renderers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function TitleSlide({ slide }) {
   const bg = THEME_BG[slide.backgroundTheme] || THEME_BG.blue;
@@ -106,7 +106,7 @@ function QuoteSlide({ slide }) {
       <blockquote className="text-2xl lg:text-3xl font-light leading-relaxed italic max-w-2xl">
         {slide.content}
       </blockquote>
-      {slide.title && <p className={`mt-6 text-base font-medium ${muted}`}>— {slide.title}</p>}
+      {slide.title && <p className={`mt-6 text-base font-medium ${muted}`}>â€” {slide.title}</p>}
     </div>
   );
 }
@@ -121,7 +121,7 @@ function SlideRenderer({ slide }) {
   return <ContentSlide slide={slide} />;
 }
 
-// ─── Chapter Quiz overlay ─────────────────────────────────────────────────────
+// â”€â”€â”€ Chapter Quiz overlay â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function ChapterQuiz({ chapterId, chapterTitle, onPass, onSkip }) {
   const [quiz, setQuiz] = useState(null);
@@ -169,14 +169,14 @@ function ChapterQuiz({ chapterId, chapterTitle, onPass, onSkip }) {
               }
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-1">{result.passed ? 'Chapter complete!' : 'Not quite right'}</h3>
-            <p className="text-gray-500 text-sm mb-4">You scored {Math.round(result.score)}% — {result.passed ? 'well done!' : 'review the answers below and try again.'}</p>
+            <p className="text-gray-500 text-sm mb-4">You scored {Math.round(result.score)}% â€” {result.passed ? 'well done!' : 'review the answers below and try again.'}</p>
             <div className="text-left space-y-3 mb-6">
               {result.results.map((r, i) => (
                 <div key={i} className={`rounded-xl p-3 border ${r.correct ? 'bg-green-50 border-green-100' : 'bg-red-50 border-red-100'}`}>
                   <p className="text-sm font-medium text-gray-900 mb-2">{r.question}</p>
                   {r.options.map((opt, oi) => (
                     <div key={oi} className={`text-xs py-0.5 flex items-center gap-1.5 ${oi === r.correctAnswer ? 'text-green-700 font-semibold' : oi === r.yourAnswer && !r.correct ? 'text-red-600' : 'text-gray-500'}`}>
-                      {oi === r.correctAnswer ? '✓' : oi === r.yourAnswer && !r.correct ? '✗' : '○'} {opt}
+                      {oi === r.correctAnswer ? 'âœ“' : oi === r.yourAnswer && !r.correct ? 'âœ—' : 'â—‹'} {opt}
                     </div>
                   ))}
                   {r.explanation && <p className="text-xs text-gray-500 mt-1 italic">{r.explanation}</p>}
@@ -184,7 +184,7 @@ function ChapterQuiz({ chapterId, chapterTitle, onPass, onSkip }) {
               ))}
             </div>
             {result.passed
-              ? <button onClick={onPass} className="w-full bg-blue-600 text-white py-3 rounded-xl text-sm font-semibold hover:bg-blue-700">Continue to Next Chapter →</button>
+              ? <button onClick={onPass} className="w-full bg-primary-700 text-white py-3 rounded-xl text-sm font-semibold hover:bg-primary-800">Continue to Next Chapter â†’</button>
               : <button onClick={() => { setResult(null); setAnswers(new Array(quiz.questions.length).fill(-1)); }} className="w-full bg-gray-800 text-white py-3 rounded-xl text-sm font-semibold hover:bg-gray-900">Try Again</button>
             }
           </div>
@@ -195,7 +195,7 @@ function ChapterQuiz({ chapterId, chapterTitle, onPass, onSkip }) {
                 <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
               </div>
               <h3 className="text-lg font-bold text-gray-900">Chapter Quiz</h3>
-              <p className="text-sm text-gray-500 mt-0.5">{chapterTitle} · {quiz?.questions.length} questions</p>
+              <p className="text-sm text-gray-500 mt-0.5">{chapterTitle} Â· {quiz?.questions.length} questions</p>
             </div>
             <div className="space-y-5">
               {quiz?.questions.map((q, qi) => (
@@ -207,7 +207,7 @@ function ChapterQuiz({ chapterId, chapterTitle, onPass, onSkip }) {
                         key={oi}
                         type="button"
                         onClick={() => setAnswers((prev) => { const n = [...prev]; n[qi] = oi; return n; })}
-                        className={`w-full text-left px-4 py-2.5 rounded-xl border-2 text-sm transition-colors ${answers[qi] === oi ? 'border-blue-500 bg-blue-50 text-blue-800 font-medium' : 'border-gray-200 hover:border-gray-300 text-gray-700'}`}
+                        className={`w-full text-left px-4 py-2.5 rounded-xl border-2 text-sm transition-colors ${answers[qi] === oi ? 'border-primary-600 bg-primary-50 text-blue-800 font-medium' : 'border-gray-200 hover:border-gray-300 text-gray-700'}`}
                       >
                         {opt}
                       </button>
@@ -219,7 +219,7 @@ function ChapterQuiz({ chapterId, chapterTitle, onPass, onSkip }) {
             <div className="flex gap-3 mt-6">
               <button onClick={handleSubmit} disabled={submitting || answers.some((a) => a === -1)} className="flex-1 bg-purple-600 text-white py-3 rounded-xl text-sm font-semibold hover:bg-purple-700 disabled:opacity-50 flex items-center justify-center gap-2">
                 {submitting && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
-                {submitting ? 'Submitting…' : 'Submit Answers'}
+                {submitting ? 'Submittingâ€¦' : 'Submit Answers'}
               </button>
               <button onClick={onSkip} className="px-4 py-3 border border-gray-200 rounded-xl text-sm text-gray-500 hover:bg-gray-50">Skip</button>
             </div>
@@ -230,7 +230,7 @@ function ChapterQuiz({ chapterId, chapterTitle, onPass, onSkip }) {
   );
 }
 
-// ─── Main viewer ──────────────────────────────────────────────────────────────
+// â”€â”€â”€ Main viewer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export default function LessonViewerPage() {
   const { courseId, lessonId } = useParams();
@@ -284,7 +284,7 @@ export default function LessonViewerPage() {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+      <div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" />
     </div>
   );
   if (!lesson) return <div className="text-center py-16 text-gray-500">Slide not found.</div>;
@@ -323,7 +323,7 @@ export default function LessonViewerPage() {
             <button
               key={s.id}
               onClick={() => s.id !== lessonId && goToSlide(s.id)}
-              className={`h-1.5 rounded-full transition-all ${s.id === lessonId ? 'w-6 bg-blue-600' : 'w-1.5 bg-gray-200 hover:bg-gray-400'}`}
+              className={`h-1.5 rounded-full transition-all ${s.id === lessonId ? 'w-6 bg-primary-700' : 'w-1.5 bg-gray-200 hover:bg-gray-400'}`}
               title={s.title}
             />
           ))}
@@ -367,7 +367,7 @@ export default function LessonViewerPage() {
         ) : (
           <button
             onClick={handleNext}
-            className="flex items-center gap-2 px-5 py-2 text-sm font-semibold bg-blue-600 text-white rounded-xl hover:bg-blue-700"
+            className="flex items-center gap-2 px-5 py-2 text-sm font-semibold bg-primary-700 text-white rounded-xl hover:bg-primary-800"
           >
             Next
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>

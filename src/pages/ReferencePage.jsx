@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getPublicReferenceForm, submitReferenceForm } from '../api/referenceApi';
 
@@ -31,8 +31,8 @@ function RatingSelector({ name, label, value, onChange }) {
             onClick={() => onChange(n)}
             className={`w-10 h-10 rounded-lg border-2 text-sm font-semibold transition-colors ${
               value === n
-                ? 'border-blue-600 bg-blue-600 text-white'
-                : 'border-gray-200 text-gray-500 hover:border-blue-300'
+                ? 'border-primary-700 bg-primary-700 text-white'
+                : 'border-gray-200 text-gray-500 hover:border-primary-300'
             }`}
           >
             {n}
@@ -100,7 +100,7 @@ export default function ReferencePage() {
 
   if (loading) return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+      <div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" />
     </div>
   );
 
@@ -137,7 +137,7 @@ export default function ReferencePage() {
   );
 
   const fmt = (d) => d ? new Date(d).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }) : null;
-  const period = [fmt(context?.employmentStart), fmt(context?.employmentEnd)].filter(Boolean).join(' – ');
+  const period = [fmt(context?.employmentStart), fmt(context?.employmentEnd)].filter(Boolean).join(' â€“ ');
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
@@ -146,12 +146,7 @@ export default function ReferencePage() {
         {/* Header */}
         <div className="text-center mb-6">
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-            </div>
-            <span className="font-bold text-gray-900 text-lg">Lead Nurse</span>
+            <img src="https://leadnurse.co.uk/wp-content/uploads/2026/02/Lead-Nurse-Logo-e1771949504571-1024x377.png" alt="Lead Nurse" className="h-8 w-auto object-contain" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900">Employment Reference Request</h1>
           <p className="text-gray-500 text-sm mt-1">
@@ -160,27 +155,27 @@ export default function ReferencePage() {
         </div>
 
         {/* Context card */}
-        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 text-sm">
+        <div className="bg-primary-50 border border-primary-100 rounded-xl p-4 mb-6 text-sm">
           <div className="flex flex-wrap gap-4">
             <div>
-              <p className="text-xs text-blue-500 font-medium uppercase tracking-wide">Applicant</p>
+              <p className="text-xs text-primary-600 font-medium uppercase tracking-wide">Applicant</p>
               <p className="text-blue-900 font-semibold">{context?.workerFirstName}</p>
             </div>
             {context?.relationship && (
               <div>
-                <p className="text-xs text-blue-500 font-medium uppercase tracking-wide">Your relationship</p>
+                <p className="text-xs text-primary-600 font-medium uppercase tracking-wide">Your relationship</p>
                 <p className="text-blue-900 font-semibold">{RELATIONSHIP_LABELS[context.relationship] || context.relationship}</p>
               </div>
             )}
             {context?.refereeOrganisation && (
               <div>
-                <p className="text-xs text-blue-500 font-medium uppercase tracking-wide">Organisation</p>
+                <p className="text-xs text-primary-600 font-medium uppercase tracking-wide">Organisation</p>
                 <p className="text-blue-900 font-semibold">{context.refereeOrganisation}</p>
               </div>
             )}
             {period && (
               <div>
-                <p className="text-xs text-blue-500 font-medium uppercase tracking-wide">Period known</p>
+                <p className="text-xs text-primary-600 font-medium uppercase tracking-wide">Period known</p>
                 <p className="text-blue-900 font-semibold">{period}</p>
               </div>
             )}
@@ -201,7 +196,7 @@ export default function ReferencePage() {
                 value={form.jobTitleDuringTenure}
                 onChange={(e) => setField('jobTitleDuringTenure', e.target.value)}
                 placeholder="e.g. Healthcare Assistant"
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700"
               />
             </div>
           </div>
@@ -235,7 +230,7 @@ export default function ReferencePage() {
                 value={form.reasonForLeaving}
                 onChange={(e) => setField('reasonForLeaving', e.target.value)}
                 placeholder="Describe the circumstances of their departure..."
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary-700"
               />
             </div>
             <div>
@@ -247,7 +242,7 @@ export default function ReferencePage() {
                 value={form.additionalComments}
                 onChange={(e) => setField('additionalComments', e.target.value)}
                 placeholder="Any other relevant information about the applicant's character, skills or suitability for a healthcare role..."
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary-700"
               />
             </div>
           </div>
@@ -282,7 +277,7 @@ export default function ReferencePage() {
                 type="checkbox"
                 checked={form.declarationSigned}
                 onChange={(e) => setField('declarationSigned', e.target.checked)}
-                className="mt-0.5 w-4 h-4 accent-blue-600 flex-shrink-0"
+                className="mt-0.5 w-4 h-4 accent-primary-700 flex-shrink-0"
               />
               <span className="text-sm text-gray-700 leading-relaxed">
                 I declare that the information I have provided in this reference is true, accurate and to the best of my knowledge.
@@ -298,10 +293,10 @@ export default function ReferencePage() {
           <button
             type="submit"
             disabled={!canSubmit() || submitting}
-            className="w-full bg-blue-600 text-white py-3 rounded-xl text-sm font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
+            className="w-full bg-primary-700 text-white py-3 rounded-xl text-sm font-semibold hover:bg-primary-800 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
           >
             {submitting && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
-            {submitting ? 'Submitting…' : 'Submit Reference'}
+            {submitting ? 'Submittingâ€¦' : 'Submit Reference'}
           </button>
 
           <p className="text-xs text-gray-400 text-center pb-6">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { getMyShifts } from '../../api/shiftApi';
 import { checkIn, checkOut } from '../../api/attendanceApi';
 import ShiftCard from '../../components/workforce/ShiftCard';
@@ -71,7 +71,7 @@ export default function MyShifts() {
       </div>
 
       {loading ? (
-        <div className="flex justify-center py-12"><div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" /></div>
+        <div className="flex justify-center py-12"><div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" /></div>
       ) : assignments.length === 0 ? (
         <div className="bg-white rounded-xl border border-gray-200 p-12 text-center text-gray-500">No shifts found.</div>
       ) : (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getShifts, deleteShift } from '../../../api/shiftApi';
 import { getFacilities } from '../../../api/facilityApi';
@@ -54,7 +54,7 @@ export default function ShiftManagement() {
           <h1 className="text-2xl font-bold text-gray-900">Shift Management</h1>
           <p className="text-sm text-gray-500 mt-0.5">{total} shifts total</p>
         </div>
-        <Link to="/admin/workforce/shifts/new" className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+        <Link to="/admin/workforce/shifts/new" className="bg-primary-700 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-800 transition-colors">
           + New Shift
         </Link>
       </div>
@@ -74,7 +74,7 @@ export default function ShiftManagement() {
       </div>
 
       {loading ? (
-        <div className="flex justify-center py-12"><div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" /></div>
+        <div className="flex justify-center py-12"><div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" /></div>
       ) : shifts.length === 0 ? (
         <div className="text-center py-12 text-gray-500">No shifts found.</div>
       ) : (
@@ -82,7 +82,7 @@ export default function ShiftManagement() {
           {shifts.map((shift) => (
             <ShiftCard key={shift.id} shift={shift} actions={
               <>
-                <Link to={`/admin/workforce/shifts/${shift.id}/edit`} className="text-xs text-blue-600 hover:underline">Edit</Link>
+                <Link to={`/admin/workforce/shifts/${shift.id}/edit`} className="text-xs text-primary-700 hover:underline">Edit</Link>
                 <button onClick={() => handleDelete(shift.id)} className="text-xs text-red-500 hover:underline">Delete</button>
               </>
             } />

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { getMyCompliance, uploadComplianceDocument, submitMyComplianceDocument } from '../../api/complianceApi';
 import ComplianceBadge from '../../components/workforce/ComplianceBadge';
@@ -19,13 +19,13 @@ const TYPE_LABELS = {
 const ALL_TYPES = Object.keys(TYPE_LABELS);
 
 function DocLink({ url }) {
-  if (!url) return <span className="text-xs text-gray-400">—</span>;
+  if (!url) return <span className="text-xs text-gray-400">â€”</span>;
   return (
     <a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-1 text-xs text-blue-600 hover:text-blue-700 font-medium"
+      className="inline-flex items-center gap-1 text-xs text-primary-700 hover:text-primary-800 font-medium"
     >
       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -63,16 +63,16 @@ function ReplaceButton({ record, onUploaded }) {
         type="button"
         onClick={() => inputRef.current?.click()}
         disabled={uploading}
-        className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-blue-600 font-medium disabled:opacity-50 transition-colors"
+        className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-primary-700 font-medium disabled:opacity-50 transition-colors"
       >
         {uploading ? (
-          <div className="w-3.5 h-3.5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+          <div className="w-3.5 h-3.5 border-2 border-primary-700 border-t-transparent rounded-full animate-spin" />
         ) : (
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
           </svg>
         )}
-        {uploading ? 'Uploading…' : record.documentUrl ? 'Replace' : 'Upload'}
+        {uploading ? 'Uploadingâ€¦' : record.documentUrl ? 'Replace' : 'Upload'}
       </button>
     </>
   );
@@ -121,9 +121,9 @@ function UploadModal({ existingTypes, onClose, onUploaded }) {
               value={selectedType}
               onChange={(e) => setSelectedType(e.target.value)}
               required
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700"
             >
-              <option value="">Select a document type…</option>
+              <option value="">Select a document typeâ€¦</option>
               {ALL_TYPES.map((t) => (
                 <option key={t} value={t}>{TYPE_LABELS[t]}</option>
               ))}
@@ -139,7 +139,7 @@ function UploadModal({ existingTypes, onClose, onUploaded }) {
             <label className="block text-sm font-medium text-gray-700 mb-1">File</label>
             <div
               onClick={() => fileInputRef.current?.click()}
-              className="border-2 border-dashed border-gray-200 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors"
+              className="border-2 border-dashed border-gray-200 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 hover:bg-primary-50 transition-colors"
             >
               <input
                 ref={fileInputRef}
@@ -150,7 +150,7 @@ function UploadModal({ existingTypes, onClose, onUploaded }) {
               />
               {file ? (
                 <div className="flex items-center justify-center gap-2">
-                  <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span className="text-sm text-gray-700 font-medium truncate max-w-xs">{file.name}</span>
@@ -170,7 +170,7 @@ function UploadModal({ existingTypes, onClose, onUploaded }) {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                   </svg>
                   <p className="text-sm text-gray-500">Click to select a file</p>
-                  <p className="text-xs text-gray-400 mt-1">JPG, PNG or PDF · Max 10MB</p>
+                  <p className="text-xs text-gray-400 mt-1">JPG, PNG or PDF Â· Max 10MB</p>
                 </>
               )}
             </div>
@@ -180,10 +180,10 @@ function UploadModal({ existingTypes, onClose, onUploaded }) {
             <button
               type="submit"
               disabled={uploading || !selectedType || !file}
-              className="flex-1 bg-blue-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="flex-1 bg-primary-700 text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {uploading && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
-              {uploading ? 'Submitting…' : 'Submit for Review'}
+              {uploading ? 'Submittingâ€¦' : 'Submit for Review'}
             </button>
             <button
               type="button"
@@ -221,7 +221,7 @@ export default function MyCompliance() {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+      <div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" />
     </div>
   );
 
@@ -234,7 +234,7 @@ export default function MyCompliance() {
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-primary-700 text-white text-sm font-medium rounded-lg hover:bg-primary-800 transition-colors"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
@@ -280,7 +280,7 @@ export default function MyCompliance() {
                   </td>
                   <td className="px-4 py-3"><ComplianceBadge status={r.status} /></td>
                   <td className="px-4 py-3 text-gray-500">
-                    {r.expiryDate ? new Date(r.expiryDate).toLocaleDateString('en-GB') : '—'}
+                    {r.expiryDate ? new Date(r.expiryDate).toLocaleDateString('en-GB') : 'â€”'}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
@@ -293,7 +293,7 @@ export default function MyCompliance() {
             </tbody>
           </table>
           <div className="px-4 py-2.5 border-t border-gray-100 bg-gray-50">
-            <p className="text-xs text-gray-400">Accepted formats: JPG, PNG, PDF · Max 10MB per file</p>
+            <p className="text-xs text-gray-400">Accepted formats: JPG, PNG, PDF Â· Max 10MB per file</p>
           </div>
         </div>
       )}

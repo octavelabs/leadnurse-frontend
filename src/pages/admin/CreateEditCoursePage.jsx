@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -53,7 +53,7 @@ export default function CreateEditCoursePage() {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
-        <Link to="/admin/courses" className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1 mb-4">
+        <Link to="/admin/courses" className="text-sm text-primary-700 hover:text-primary-800 flex items-center gap-1 mb-4">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
@@ -87,12 +87,12 @@ export default function CreateEditCoursePage() {
             <input
               type="checkbox"
               id="isPublished"
-              className="w-4 h-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500"
+              className="w-4 h-4 rounded text-primary-700 border-gray-300 focus:ring-primary-700"
               {...register('isPublished')}
             />
             <label htmlFor="isPublished" className="text-sm text-gray-700">
               <span className="font-medium">Publish immediately</span>
-              <span className="text-gray-500 ml-1">— make this course visible to employees</span>
+              <span className="text-gray-500 ml-1">â€” make this course visible to employees</span>
             </label>
           </div>
 

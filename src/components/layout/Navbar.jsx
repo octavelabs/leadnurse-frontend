@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
+const LOGO_URL = 'https://leadnurse.co.uk/wp-content/uploads/2026/02/Lead-Nurse-Logo-e1771949504571-1024x377.png';
+
 export default function Navbar({ onMenuClick }) {
   const { user, logout, isAdmin } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -17,13 +19,17 @@ export default function Navbar({ onMenuClick }) {
         </svg>
       </button>
 
-      <Link to={isAdmin ? '/admin/dashboard' : '/dashboard'} className="flex items-center gap-2">
-        <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-          </svg>
-        </div>
-        <span className="font-bold text-gray-900 text-lg hidden sm:block">Lead Nurse</span>
+      <Link to={isAdmin ? '/admin/dashboard' : '/dashboard'} className="flex items-center">
+        <img
+          src={LOGO_URL}
+          alt="Lead Nurse"
+          className="h-8 w-auto object-contain"
+          onError={(e) => {
+            e.target.style.display = 'none';
+            e.target.nextSibling.style.display = 'block';
+          }}
+        />
+        <span className="hidden font-bold text-primary-700 text-lg">Lead Nurse</span>
       </Link>
 
       <div className="ml-auto flex items-center gap-3">
@@ -39,7 +45,7 @@ export default function Navbar({ onMenuClick }) {
                 className="w-8 h-8 rounded-full object-cover"
               />
             ) : (
-              <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-semibold text-sm">
+              <div className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-semibold text-sm">
                 {user?.name?.charAt(0).toUpperCase()}
               </div>
             )}

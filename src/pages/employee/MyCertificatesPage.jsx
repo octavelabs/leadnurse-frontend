@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getMyCertificates } from '../../api/certificateApi';
 import { generateCertificatePDF } from '../../utils/certificateGenerator';
@@ -45,17 +45,17 @@ export default function MyCertificatesPage() {
           </div>
           <h3 className="font-semibold text-gray-900 mb-1">No certificates yet</h3>
           <p className="text-gray-500 text-sm mb-4">Complete courses and pass assessments to earn certificates.</p>
-          <Link to="/courses" className="text-blue-600 font-medium text-sm hover:text-blue-700">Browse courses →</Link>
+          <Link to="/courses" className="text-primary-700 font-medium text-sm hover:text-primary-800">Browse courses â†’</Link>
         </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2">
           {certificates.map((cert) => (
             <div key={cert.id} className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
-              <div className="h-2 bg-gradient-to-r from-blue-500 to-indigo-600" />
+              <div className="h-2 bg-gradient-to-r from-primary-500 to-indigo-600" />
               <div className="p-5">
                 <div className="flex items-start gap-3 mb-4">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>

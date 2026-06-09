@@ -58,8 +58,8 @@ function NavItem({ to, label, icon }) {
       className={({ isActive }) =>
         `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
           isActive
-            ? 'bg-blue-600 text-white'
-            : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+            ? 'bg-primary-700 text-white'
+            : 'text-gray-600 hover:bg-primary-50 hover:text-primary-700'
         }`
       }
     >
@@ -103,7 +103,7 @@ export default function Sidebar({ open, onClose }) {
 
         <div className="px-3 py-3 border-t border-gray-100 space-y-0.5">
           <NavItem to="/profile" label="My Profile" icon="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-          <p className="text-xs text-gray-400 text-center pt-2">Lead Nurse</p>
+          <p className="text-xs text-gray-400 text-center pt-2" style={{ color: '#de9f4f' }}>Lead Nurse</p>
         </div>
       </aside>
     </>

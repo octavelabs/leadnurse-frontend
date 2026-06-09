@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { getFacilities, createFacility, updateFacility, deleteFacility } from '../../../api/facilityApi';
 import toast from 'react-hot-toast';
 
 const TYPES = ['HOSPITAL', 'CARE_HOME', 'CLINIC', 'GP_SURGERY', 'COMMUNITY_HEALTH', 'OTHER'];
 const EMPTY = { name: '', type: 'HOSPITAL', address: '', city: '', postcode: '', contactName: '', contactEmail: '', contactPhone: '' };
 
-// Defined outside component so React sees a stable type reference — fixes the
+// Defined outside component so React sees a stable type reference â€” fixes the
 // "input loses focus after every keystroke" bug caused by inline component defs.
 function FormField({ label, value, onChange, type = 'text', placeholder }) {
   return (
@@ -13,7 +13,7 @@ function FormField({ label, value, onChange, type = 'text', placeholder }) {
       <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
       <input
         type={type}
-        className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-700"
         placeholder={placeholder}
         value={value || ''}
         onChange={onChange}
@@ -75,7 +75,7 @@ export default function FacilityManagement() {
       toast.success('Facility deleted');
       load();
     } catch {
-      toast.error('Cannot delete — this facility may have existing shifts');
+      toast.error('Cannot delete â€” this facility may have existing shifts');
     }
   }
 
@@ -88,7 +88,7 @@ export default function FacilityManagement() {
         </div>
         <button
           onClick={() => setForm({ ...EMPTY })}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+          className="bg-primary-700 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-800 transition-colors"
         >
           + Add Facility
         </button>
@@ -96,7 +96,7 @@ export default function FacilityManagement() {
 
       {loading ? (
         <div className="flex justify-center py-12">
-          <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" />
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -110,10 +110,10 @@ export default function FacilityManagement() {
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="font-semibold text-gray-900">{f.name}</h3>
-                  <p className="text-xs text-blue-600 mt-0.5">{f.type.replace(/_/g, ' ')}</p>
+                  <p className="text-xs text-primary-700 mt-0.5">{f.type.replace(/_/g, ' ')}</p>
                 </div>
                 <div className="flex gap-3">
-                  <button onClick={() => setForm({ ...f })} className="text-xs text-blue-600 hover:underline">Edit</button>
+                  <button onClick={() => setForm({ ...f })} className="text-xs text-primary-700 hover:underline">Edit</button>
                   <button onClick={() => handleDelete(f.id)} className="text-xs text-red-500 hover:underline">Delete</button>
                 </div>
               </div>
@@ -147,7 +147,7 @@ export default function FacilityManagement() {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Facility Type</label>
               <select
-                className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-700"
                 value={form.type}
                 onChange={setField('type')}
               >
@@ -177,9 +177,9 @@ export default function FacilityManagement() {
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                className="bg-primary-700 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50 transition-colors"
               >
-                {saving ? 'Saving…' : form.id ? 'Update Facility' : 'Create Facility'}
+                {saving ? 'Savingâ€¦' : form.id ? 'Update Facility' : 'Create Facility'}
               </button>
               <button
                 onClick={() => setForm(null)}

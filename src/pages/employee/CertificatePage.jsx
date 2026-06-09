@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { getCertificateByCourse } from '../../api/certificateApi';
@@ -41,7 +41,7 @@ export default function CertificatePage() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
-      <Link to={`/courses/${courseId}`} className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1">
+      <Link to={`/courses/${courseId}`} className="text-sm text-primary-700 hover:text-primary-800 flex items-center gap-1">
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
@@ -49,13 +49,13 @@ export default function CertificatePage() {
       </Link>
 
       {/* Certificate Preview */}
-      <div className="bg-white rounded-2xl border-2 border-blue-200 overflow-hidden shadow-lg">
+      <div className="bg-white rounded-2xl border-2 border-primary-200 overflow-hidden shadow-lg">
         {/* Header stripe */}
-        <div className="h-3 bg-gradient-to-r from-blue-600 to-indigo-600" />
+        <div className="h-3 bg-gradient-to-r from-primary-700 to-indigo-600" />
 
         <div className="px-8 py-10 text-center">
-          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-9 h-9 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-9 h-9 text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
             </svg>
           </div>
@@ -63,14 +63,14 @@ export default function CertificatePage() {
           <p className="text-sm text-gray-500 uppercase tracking-widest font-medium mb-2">
             Certificate of Completion
           </p>
-          <div className="w-16 h-px bg-blue-200 mx-auto mb-6" />
+          <div className="w-16 h-px bg-primary-200 mx-auto mb-6" />
 
           <p className="text-gray-600 mb-2">This is to certify that</p>
           <h2 className="text-3xl font-bold text-gray-900 mb-1">{cert.user.name}</h2>
-          <div className="w-48 h-0.5 bg-blue-500 mx-auto mb-6" />
+          <div className="w-48 h-0.5 bg-primary-600 mx-auto mb-6" />
 
           <p className="text-gray-600 mb-3">has successfully completed</p>
-          <h3 className="text-xl font-bold text-blue-700 mb-8 px-4">{cert.course.title}</h3>
+          <h3 className="text-xl font-bold text-primary-800 mb-8 px-4">{cert.course.title}</h3>
 
           <div className="inline-flex flex-col items-center">
             <p className="text-lg font-semibold text-gray-800">{dateStr}</p>
@@ -79,7 +79,7 @@ export default function CertificatePage() {
           </div>
         </div>
 
-        <div className="h-3 bg-gradient-to-r from-blue-600 to-indigo-600" />
+        <div className="h-3 bg-gradient-to-r from-primary-700 to-indigo-600" />
       </div>
 
       <div className="bg-white rounded-xl border border-gray-200 p-4 flex items-center justify-between">

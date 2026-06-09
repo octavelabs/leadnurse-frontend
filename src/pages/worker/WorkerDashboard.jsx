@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getMyShifts } from '../../api/shiftApi';
 import { getMyCompliance } from '../../api/complianceApi';
@@ -29,7 +29,7 @@ export default function WorkerDashboard() {
 
   const alertCompliance = compliance.filter((c) => c.status === 'EXPIRED' || c.status === 'EXPIRING_SOON');
 
-  if (loading) return <div className="flex items-center justify-center h-64"><div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" /></div>;
+  if (loading) return <div className="flex items-center justify-center h-64"><div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" /></div>;
 
   return (
     <div className="p-6 max-w-5xl mx-auto space-y-6">
@@ -41,7 +41,7 @@ export default function WorkerDashboard() {
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
         <Link to="/my-shifts" className="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-sm transition-shadow">
           <p className="text-sm text-gray-500">Upcoming Shifts</p>
-          <p className="text-3xl font-bold text-blue-700 mt-1">{upcomingShifts.length}</p>
+          <p className="text-3xl font-bold text-primary-800 mt-1">{upcomingShifts.length}</p>
         </Link>
         <Link to="/my-compliance" className="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-sm transition-shadow">
           <p className="text-sm text-gray-500">Compliance Alerts</p>
@@ -64,14 +64,14 @@ export default function WorkerDashboard() {
               </div>
             ))}
           </div>
-          <Link to="/my-compliance" className="text-sm text-red-700 font-medium mt-3 block hover:underline">View all compliance →</Link>
+          <Link to="/my-compliance" className="text-sm text-red-700 font-medium mt-3 block hover:underline">View all compliance â†’</Link>
         </div>
       )}
 
       <div>
         <div className="flex items-center justify-between mb-3">
           <h2 className="font-semibold text-gray-900">Upcoming Shifts</h2>
-          <Link to="/my-shifts" className="text-sm text-blue-600 hover:underline">View all</Link>
+          <Link to="/my-shifts" className="text-sm text-primary-700 hover:underline">View all</Link>
         </div>
         {upcomingShifts.length === 0 ? (
           <div className="bg-white rounded-xl border border-gray-200 p-8 text-center text-gray-500">No upcoming shifts assigned.</div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { getAttendance } from '../../../api/attendanceApi';
 import AttendanceStatusBadge from '../../../components/workforce/AttendanceStatusBadge';
 import toast from 'react-hot-toast';
@@ -33,7 +33,7 @@ export default function AttendanceManagement() {
     <div className="p-6 max-w-7xl mx-auto space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-gray-900">Attendance Management</h1>
-        <p className="text-sm text-gray-500 mt-0.5">{records.length} records · {totalHours.toFixed(1)}h total · {totalOvertime.toFixed(1)}h overtime</p>
+        <p className="text-sm text-gray-500 mt-0.5">{records.length} records Â· {totalHours.toFixed(1)}h total Â· {totalOvertime.toFixed(1)}h overtime</p>
       </div>
 
       <div className="bg-white rounded-xl border border-gray-200 p-4 flex flex-wrap gap-3">
@@ -47,7 +47,7 @@ export default function AttendanceManagement() {
       </div>
 
       {loading ? (
-        <div className="flex justify-center py-12"><div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" /></div>
+        <div className="flex justify-center py-12"><div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" /></div>
       ) : (
         <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
           <table className="w-full text-sm">
@@ -70,9 +70,9 @@ export default function AttendanceManagement() {
                   <td className="px-4 py-3 font-medium text-gray-900">{r.user?.name}</td>
                   <td className="px-4 py-3 text-gray-600">{r.shift?.title}</td>
                   <td className="px-4 py-3 text-gray-500">{r.shift?.facility?.name}</td>
-                  <td className="px-4 py-3 text-gray-600">{r.checkInTime ? new Date(r.checkInTime).toLocaleString('en-GB', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: 'short' }) : '—'}</td>
-                  <td className="px-4 py-3 text-gray-600">{r.checkOutTime ? new Date(r.checkOutTime).toLocaleString('en-GB', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: 'short' }) : '—'}</td>
-                  <td className="px-4 py-3">{r.hoursWorked ? `${r.hoursWorked.toFixed(1)}h${r.overtimeHours > 0 ? ` (+${r.overtimeHours.toFixed(1)}OT)` : ''}` : '—'}</td>
+                  <td className="px-4 py-3 text-gray-600">{r.checkInTime ? new Date(r.checkInTime).toLocaleString('en-GB', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: 'short' }) : 'â€”'}</td>
+                  <td className="px-4 py-3 text-gray-600">{r.checkOutTime ? new Date(r.checkOutTime).toLocaleString('en-GB', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: 'short' }) : 'â€”'}</td>
+                  <td className="px-4 py-3">{r.hoursWorked ? `${r.hoursWorked.toFixed(1)}h${r.overtimeHours > 0 ? ` (+${r.overtimeHours.toFixed(1)}OT)` : ''}` : 'â€”'}</td>
                   <td className="px-4 py-3"><AttendanceStatusBadge status={r.status} /></td>
                 </tr>
               ))}

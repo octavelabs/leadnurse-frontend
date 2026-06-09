@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAllReferences, getReferenceSummary } from '../../../api/referenceApi';
 
@@ -62,7 +62,7 @@ export default function ReferenceMonitor() {
           <div className="bg-white rounded-xl border border-gray-200 p-4">
             <p className="text-xs text-gray-500">Awaiting Response</p>
             <p className="text-2xl font-bold text-yellow-600 mt-1">{summary.awaitingResponse}</p>
-            <p className="text-xs text-gray-400 mt-0.5">{summary.pending} unsent · {summary.sent} sent</p>
+            <p className="text-xs text-gray-400 mt-0.5">{summary.pending} unsent Â· {summary.sent} sent</p>
           </div>
           <div className="bg-white rounded-xl border border-gray-200 p-4">
             <p className="text-xs text-gray-500">Completed</p>
@@ -85,7 +85,7 @@ export default function ReferenceMonitor() {
               onClick={() => setStatusFilter(s)}
               className={`px-3 py-1 rounded-lg text-xs font-medium border transition-colors ${
                 statusFilter === s
-                  ? 'bg-blue-600 text-white border-blue-600'
+                  ? 'bg-primary-700 text-white border-primary-700'
                   : 'border-gray-200 text-gray-600 hover:bg-gray-50'
               }`}
             >
@@ -97,7 +97,7 @@ export default function ReferenceMonitor() {
 
       {/* Table */}
       {loading ? (
-        <div className="flex justify-center py-12"><div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" /></div>
+        <div className="flex justify-center py-12"><div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" /></div>
       ) : references.length === 0 ? (
         <div className="bg-white rounded-xl border border-gray-200 p-12 text-center text-gray-500">
           No references found{statusFilter ? ' for this status' : ''}. Add references from a worker's profile.
@@ -122,7 +122,7 @@ export default function ReferenceMonitor() {
                   <td className="px-4 py-3">
                     <Link
                       to={`/admin/workforce/workers/${r.worker?.id}`}
-                      className="font-medium text-blue-600 hover:text-blue-700"
+                      className="font-medium text-primary-700 hover:text-primary-800"
                     >
                       {r.worker?.name}
                     </Link>
@@ -137,16 +137,16 @@ export default function ReferenceMonitor() {
                   </td>
                   <td className="px-4 py-3"><StatusBadge status={r.status} /></td>
                   <td className="px-4 py-3 text-gray-500 text-xs">
-                    {r.requestedAt ? new Date(r.requestedAt).toLocaleDateString('en-GB') : '—'}
+                    {r.requestedAt ? new Date(r.requestedAt).toLocaleDateString('en-GB') : 'â€”'}
                   </td>
                   <td className="px-4 py-3 text-gray-500 text-xs">
-                    {r.completedAt ? new Date(r.completedAt).toLocaleDateString('en-GB') : '—'}
+                    {r.completedAt ? new Date(r.completedAt).toLocaleDateString('en-GB') : 'â€”'}
                   </td>
                   <td className="px-4 py-3">
                     {r.status === 'COMPLETED' && (
                       <button
                         onClick={() => navigate(`/admin/workforce/workers/${r.worker?.id}`)}
-                        className="text-xs text-blue-600 hover:underline"
+                        className="text-xs text-primary-700 hover:underline"
                       >
                         View
                       </button>

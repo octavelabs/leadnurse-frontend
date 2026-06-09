@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { getAvailableShifts, applyForShift } from '../../api/shiftApi';
 import { getFacilities } from '../../api/facilityApi';
 import { getHealthcareRoles } from '../../api/workerApi';
@@ -8,15 +8,15 @@ const TYPE_LABELS = { DAY: 'Day', NIGHT: 'Night', LONG_DAY: 'Long Day', ON_CALL:
 const TYPE_COLORS = { DAY: 'bg-sky-50 text-sky-700', NIGHT: 'bg-indigo-50 text-indigo-700', LONG_DAY: 'bg-orange-50 text-orange-700', ON_CALL: 'bg-purple-50 text-purple-700' };
 
 const APP_STATUS = {
-  PENDING:   { label: 'Applied — Awaiting review', cls: 'bg-yellow-50 text-yellow-800 border border-yellow-200' },
-  CONFIRMED: { label: '✓ Confirmed', cls: 'bg-green-50 text-green-800 border border-green-200' },
+  PENDING:   { label: 'Applied â€” Awaiting review', cls: 'bg-yellow-50 text-yellow-800 border border-yellow-200' },
+  CONFIRMED: { label: 'âœ“ Confirmed', cls: 'bg-green-50 text-green-800 border border-green-200' },
   DECLINED:  { label: 'Not successful', cls: 'bg-red-50 text-red-700 border border-red-200' },
   CANCELLED: { label: 'Cancelled', cls: 'bg-gray-100 text-gray-500 border border-gray-200' },
 };
 
 function RequirementTag({ label }) {
   return (
-    <span className="inline-flex items-center gap-1 text-xs bg-blue-50 text-blue-700 border border-blue-100 px-2 py-0.5 rounded-full">
+    <span className="inline-flex items-center gap-1 text-xs bg-primary-50 text-primary-800 border border-primary-100 px-2 py-0.5 rounded-full">
       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
@@ -58,7 +58,7 @@ function ShiftCardFull({ shift, onApply, applying }) {
             <p className="text-xs text-gray-400">{shift.role?.name}</p>
           </div>
           <div className="text-right flex-shrink-0">
-            <p className="text-xl font-bold text-gray-900">£{shift.hourlyRate?.toFixed(2)}</p>
+            <p className="text-xl font-bold text-gray-900">Â£{shift.hourlyRate?.toFixed(2)}</p>
             <p className="text-xs text-gray-400">per hour</p>
           </div>
         </div>
@@ -75,7 +75,7 @@ function ShiftCardFull({ shift, onApply, applying }) {
             <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            {start.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })} – {end.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
+            {start.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })} â€“ {end.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
           </span>
         </div>
 
@@ -97,12 +97,12 @@ function ShiftCardFull({ shift, onApply, applying }) {
         <div className="flex items-center gap-3 flex-1">
           <div className="flex-1 max-w-28">
             <div className="w-full bg-gray-200 rounded-full h-1.5">
-              <div className="bg-blue-500 h-1.5 rounded-full transition-all" style={{ width: `${fillPct}%` }} />
+              <div className="bg-primary-600 h-1.5 rounded-full transition-all" style={{ width: `${fillPct}%` }} />
             </div>
           </div>
           <span className="text-xs text-gray-500 whitespace-nowrap">
             {shift.confirmedCount}/{shift.requiredWorkers} filled
-            {spotsLeft > 0 && <span className="text-blue-600 font-medium"> · {spotsLeft} spot{spotsLeft !== 1 ? 's' : ''} left</span>}
+            {spotsLeft > 0 && <span className="text-primary-700 font-medium"> Â· {spotsLeft} spot{spotsLeft !== 1 ? 's' : ''} left</span>}
           </span>
         </div>
 
@@ -117,12 +117,12 @@ function ShiftCardFull({ shift, onApply, applying }) {
             <button
               onClick={() => onApply(shift.id)}
               disabled={applying === shift.id}
-              className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-1.5 rounded-lg disabled:opacity-60 transition-colors"
+              className="bg-primary-700 hover:bg-primary-800 text-white text-sm font-medium px-4 py-1.5 rounded-lg disabled:opacity-60 transition-colors"
             >
               {applying === shift.id ? (
                 <span className="flex items-center gap-1.5">
                   <span className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  Applying…
+                  Applyingâ€¦
                 </span>
               ) : 'Apply'}
             </button>
@@ -213,17 +213,17 @@ export default function AvailableShifts() {
         <div className="flex flex-wrap gap-3 items-end">
           <div>
             <label className="block text-xs font-medium text-gray-500 mb-1">From</label>
-            <input type="date" className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            <input type="date" className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-700"
               value={filters.from} onChange={(e) => setFilters((f) => ({ ...f, from: e.target.value }))} />
           </div>
           <div>
             <label className="block text-xs font-medium text-gray-500 mb-1">To</label>
-            <input type="date" className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            <input type="date" className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-700"
               value={filters.to} onChange={(e) => setFilters((f) => ({ ...f, to: e.target.value }))} />
           </div>
           <div>
             <label className="block text-xs font-medium text-gray-500 mb-1">Facility</label>
-            <select className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            <select className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-700"
               value={filters.facilityId} onChange={(e) => setFilters((f) => ({ ...f, facilityId: e.target.value }))}>
               <option value="">All facilities</option>
               {facilities.map((fac) => <option key={fac.id} value={fac.id}>{fac.name}</option>)}
@@ -231,7 +231,7 @@ export default function AvailableShifts() {
           </div>
           <div>
             <label className="block text-xs font-medium text-gray-500 mb-1">Role</label>
-            <select className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            <select className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-700"
               value={filters.roleId} onChange={(e) => setFilters((f) => ({ ...f, roleId: e.target.value }))}>
               <option value="">All roles</option>
               {roles.map((r) => <option key={r.id} value={r.id}>{r.name}</option>)}
@@ -251,8 +251,8 @@ export default function AvailableShifts() {
       {/* Content */}
       {loading ? (
         <div className="flex flex-col items-center justify-center py-16 gap-3">
-          <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
-          <p className="text-sm text-gray-400">Loading available shifts…</p>
+          <div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" />
+          <p className="text-sm text-gray-400">Loading available shiftsâ€¦</p>
         </div>
       ) : error ? (
         <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
@@ -274,10 +274,10 @@ export default function AvailableShifts() {
           </div>
           <div>
             <p className="font-medium text-gray-900">No shifts available right now</p>
-            <p className="text-sm text-gray-500 mt-1">{hasFilters ? 'Try adjusting your filters.' : 'Check back soon — new shifts are posted regularly.'}</p>
+            <p className="text-sm text-gray-500 mt-1">{hasFilters ? 'Try adjusting your filters.' : 'Check back soon â€” new shifts are posted regularly.'}</p>
           </div>
           {hasFilters && (
-            <button onClick={clearFilters} className="text-sm text-blue-600 hover:underline">Clear filters</button>
+            <button onClick={clearFilters} className="text-sm text-primary-700 hover:underline">Clear filters</button>
           )}
         </div>
       ) : (

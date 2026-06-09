@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getWorkers } from '../../../api/workerApi';
 import ComplianceBadge from '../../../components/workforce/ComplianceBadge';
@@ -68,8 +68,8 @@ export default function WorkerRecords() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
             <input
-              className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Name, email…"
+              className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-700"
+              placeholder="Name, emailâ€¦"
               value={search}
               onChange={handleSearchChange}
             />
@@ -83,7 +83,7 @@ export default function WorkerRecords() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
             <input
-              className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-700"
               placeholder="e.g. Telford"
               value={cityFilter}
               onChange={handleCityChange}
@@ -103,7 +103,7 @@ export default function WorkerRecords() {
 
       {loading ? (
         <div className="flex justify-center py-12">
-          <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" />
         </div>
       ) : workers.length === 0 ? (
         <div className="bg-white rounded-xl border border-gray-200 p-12 text-center text-gray-500">
@@ -127,11 +127,11 @@ export default function WorkerRecords() {
                 <tr
                   key={w.id}
                   onClick={() => navigate(`/admin/workforce/workers/${w.id}`)}
-                  className="hover:bg-blue-50 cursor-pointer transition-colors"
+                  className="hover:bg-primary-50 cursor-pointer transition-colors"
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-semibold text-xs flex-shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-800 font-semibold text-xs flex-shrink-0">
                         {w.name?.charAt(0).toUpperCase()}
                       </div>
                       <span className="font-medium text-gray-900">{w.name}</span>
@@ -151,13 +151,13 @@ export default function WorkerRecords() {
                         <span>{w.city}{w.postcode ? `, ${w.postcode}` : ''}</span>
                       </div>
                     ) : (
-                      <span className="text-xs text-gray-400">—</span>
+                      <span className="text-xs text-gray-400">â€”</span>
                     )}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
                       {w.workerRoles?.map((wr) => (
-                        <span key={wr.id} className="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded">{wr.role.name}</span>
+                        <span key={wr.id} className="text-xs bg-primary-50 text-primary-800 px-2 py-0.5 rounded">{wr.role.name}</span>
                       ))}
                       {w.workerRoles?.length === 0 && <span className="text-xs text-gray-400">None</span>}
                     </div>
@@ -165,7 +165,7 @@ export default function WorkerRecords() {
                   <td className="px-4 py-3">
                     {getWorstCompliance(w.compliance)
                       ? <ComplianceBadge status={getWorstCompliance(w.compliance)} />
-                      : <span className="text-xs text-gray-400">—</span>}
+                      : <span className="text-xs text-gray-400">â€”</span>}
                   </td>
                   <td className="px-4 py-3 text-gray-500 whitespace-nowrap">
                     {new Date(w.createdAt).toLocaleDateString('en-GB')}

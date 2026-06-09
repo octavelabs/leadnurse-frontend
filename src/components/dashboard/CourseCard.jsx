@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Badge from '../common/Badge';
 import Button from '../common/Button';
@@ -12,7 +12,7 @@ export default function CourseCard({ course, showActions = true }) {
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow overflow-hidden flex flex-col">
-      <div className="h-2 bg-gradient-to-r from-blue-500 to-indigo-600" />
+      <div className="h-2 bg-gradient-to-r from-primary-500 to-indigo-600" />
       <div className="p-5 flex flex-col flex-1">
         <div className="flex items-start justify-between gap-2 mb-2">
           <h3 className="font-semibold text-gray-900 text-base leading-snug line-clamp-2">

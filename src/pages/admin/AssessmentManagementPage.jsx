@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useForm, useFieldArray } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -97,7 +97,7 @@ export default function AssessmentManagementPage() {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <div>
-        <Link to={`/admin/courses/${courseId}/lessons`} className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1 mb-4">
+        <Link to={`/admin/courses/${courseId}/lessons`} className="text-sm text-primary-700 hover:text-primary-800 flex items-center gap-1 mb-4">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
@@ -162,13 +162,13 @@ export default function AssessmentManagementPage() {
                           type="radio"
                           name={`questions.${qi}.correctAnswer`}
                           value={oi}
-                          className="w-4 h-4 text-blue-600"
+                          className="w-4 h-4 text-primary-700"
                           {...register(`questions.${qi}.correctAnswer`)}
                         />
                         <input
                           type="text"
                           placeholder={`Option ${String.fromCharCode(65 + oi)}`}
-                          className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700"
                           {...register(`questions.${qi}.options.${oi}`)}
                         />
                       </div>

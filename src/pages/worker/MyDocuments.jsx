@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { getMyDocuments, signDocument, declineDocument } from '../../api/documentApi';
 import toast from 'react-hot-toast';
@@ -36,31 +36,31 @@ function SignModal({ sig, onClose, onSigned }) {
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600"><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
         </div>
         <div className="p-6 space-y-4">
-          <div className="bg-blue-50 border border-blue-100 rounded-lg p-3">
+          <div className="bg-primary-50 border border-primary-100 rounded-lg p-3">
             <p className="text-sm font-medium text-blue-900">{sig.document?.title}</p>
-            {sig.document?.description && <p className="text-xs text-blue-700 mt-0.5">{sig.document.description}</p>}
+            {sig.document?.description && <p className="text-xs text-primary-800 mt-0.5">{sig.document.description}</p>}
           </div>
           <div className="bg-gray-50 rounded-lg p-3 text-xs text-gray-600 leading-relaxed">
             By signing, you confirm that you have read and agree to the contents of this document. This constitutes your electronic signature.
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Type your full name to sign: <span className="text-blue-600 font-semibold">{user?.name}</span>
+              Type your full name to sign: <span className="text-primary-700 font-semibold">{user?.name}</span>
             </label>
             <input
               value={typed}
               onChange={(e) => setTyped(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700"
               placeholder="Type your name exactly as shown above"
             />
             {typed && !confirmed && (
-              <p className="text-xs text-red-500 mt-1">Name does not match — type exactly: {user?.name}</p>
+              <p className="text-xs text-red-500 mt-1">Name does not match â€” type exactly: {user?.name}</p>
             )}
           </div>
           <div className="flex gap-3">
-            <button onClick={handleSign} disabled={!confirmed || saving} className="flex-1 bg-blue-600 text-white py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 disabled:opacity-50 flex items-center justify-center gap-2">
+            <button onClick={handleSign} disabled={!confirmed || saving} className="flex-1 bg-primary-700 text-white py-2 rounded-lg text-sm font-semibold hover:bg-primary-800 disabled:opacity-50 flex items-center justify-center gap-2">
               {saving && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
-              {saving ? 'Signing…' : 'Sign Document'}
+              {saving ? 'Signingâ€¦' : 'Sign Document'}
             </button>
             <button onClick={onClose} className="px-4 py-2 text-sm text-gray-600 border border-gray-200 rounded-lg">Cancel</button>
           </div>
@@ -101,7 +101,7 @@ export default function MyDocuments() {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+      <div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" />
     </div>
   );
 
@@ -136,12 +136,12 @@ export default function MyDocuments() {
                 <div className="flex items-center gap-3 mt-1.5">
                   <span className="text-xs text-gray-400">Assigned {new Date(sig.assignedAt).toLocaleDateString('en-GB')}</span>
                   {sig.signedAt && <span className="text-xs text-green-600">Signed {new Date(sig.signedAt).toLocaleDateString('en-GB')}</span>}
-                  <a href={sig.document?.documentUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:underline">View Document</a>
+                  <a href={sig.document?.documentUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-primary-700 hover:underline">View Document</a>
                 </div>
               </div>
               {sig.status === 'PENDING' && (
                 <div className="flex items-center gap-2 flex-shrink-0">
-                  <button onClick={() => setSigningSig(sig)} className="text-xs bg-blue-600 text-white hover:bg-blue-700 px-3 py-1.5 rounded-lg font-medium">Sign</button>
+                  <button onClick={() => setSigningSig(sig)} className="text-xs bg-primary-700 text-white hover:bg-primary-800 px-3 py-1.5 rounded-lg font-medium">Sign</button>
                   <button onClick={() => handleDecline(sig.id)} disabled={declining === sig.id} className="text-xs text-gray-400 hover:text-red-500 disabled:opacity-50">Decline</button>
                 </div>
               )}

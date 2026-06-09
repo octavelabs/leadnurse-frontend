@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
@@ -78,7 +78,7 @@ export default function ProfilePage() {
               className="w-16 h-16 rounded-full object-cover"
             />
           ) : (
-            <div className="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center text-white text-xl font-bold">
+            <div className="w-16 h-16 rounded-full bg-primary-700 flex items-center justify-center text-white text-xl font-bold">
               {initials}
             </div>
           )}
@@ -91,7 +91,7 @@ export default function ProfilePage() {
         <div className="flex-1">
           <p className="font-semibold text-gray-900">{user?.name}</p>
           <p className="text-sm text-gray-500">{user?.email}</p>
-          <span className="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded mt-1 inline-block capitalize">{user?.role?.toLowerCase()}</span>
+          <span className="text-xs bg-primary-50 text-primary-800 px-2 py-0.5 rounded mt-1 inline-block capitalize">{user?.role?.toLowerCase()}</span>
         </div>
         <div>
           <input
@@ -105,11 +105,11 @@ export default function ProfilePage() {
             type="button"
             onClick={() => fileInputRef.current?.click()}
             disabled={avatarUploading}
-            className="text-sm text-blue-600 hover:text-blue-700 font-medium disabled:opacity-50"
+            className="text-sm text-primary-700 hover:text-primary-800 font-medium disabled:opacity-50"
           >
             {user?.avatarUrl ? 'Change photo' : 'Upload photo'}
           </button>
-          <p className="text-xs text-gray-400 mt-0.5">JPG, PNG or WebP · Max 5MB</p>
+          <p className="text-xs text-gray-400 mt-0.5">JPG, PNG or WebP Â· Max 5MB</p>
         </div>
       </div>
 
@@ -168,7 +168,7 @@ export default function ProfilePage() {
               <label className="block text-sm font-medium text-gray-700 mb-1">Short Bio</label>
               <textarea
                 rows={4}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary-700"
                 placeholder="A brief description of your experience and skills..."
                 {...register('bio')}
               />
@@ -198,7 +198,7 @@ export default function ProfilePage() {
           </div>
           <div className="flex justify-between">
             <span className="text-gray-500">Member since</span>
-            <span className="text-gray-900">{user?.createdAt ? new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }) : '—'}</span>
+            <span className="text-gray-900">{user?.createdAt ? new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }) : 'â€”'}</span>
           </div>
         </div>
         <p className="text-xs text-gray-400 mt-3">To change your email or password, please contact your administrator.</p>

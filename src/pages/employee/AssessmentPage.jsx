@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { getAssessmentByCourse, submitAssessment } from '../../api/assessmentApi';
@@ -96,7 +96,7 @@ export default function AssessmentPage() {
             {result.results?.map((r, i) => (
               <div key={i} className={`flex items-center gap-3 p-3 rounded-lg ${r.isCorrect ? 'bg-emerald-50' : 'bg-red-50'}`}>
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${r.isCorrect ? 'bg-emerald-200 text-emerald-700' : 'bg-red-200 text-red-700'}`}>
-                  {r.isCorrect ? '✓' : '✗'}
+                  {r.isCorrect ? 'âœ“' : 'âœ—'}
                 </div>
                 <span className="text-sm text-gray-700">Question {i + 1}</span>
               </div>
@@ -148,11 +148,11 @@ export default function AssessmentPage() {
           <div>
             <h1 className="text-xl font-bold text-gray-900">Final Assessment</h1>
             <p className="text-gray-500 text-sm mt-0.5">
-              {questions.length} questions · Pass with {assessment.passScore}% ·
+              {questions.length} questions Â· Pass with {assessment.passScore}% Â·
               Attempt {(assessment.attemptsUsed ?? 0) + 1} of {assessment.maxAttempts}
             </p>
           </div>
-          <Link to={`/courses/${courseId}`} className="text-sm text-blue-600 hover:text-blue-700">← Back</Link>
+          <Link to={`/courses/${courseId}`} className="text-sm text-primary-700 hover:text-primary-800">â† Back</Link>
         </div>
       </div>
 
@@ -160,7 +160,7 @@ export default function AssessmentPage() {
         {questions.map((q, qi) => (
           <div key={q.id} className="bg-white rounded-xl border border-gray-200 p-6">
             <p className="font-medium text-gray-900 mb-4">
-              <span className="text-blue-600 mr-2">{qi + 1}.</span>
+              <span className="text-primary-700 mr-2">{qi + 1}.</span>
               {q.question}
             </p>
             <div className="space-y-2">
@@ -170,7 +170,7 @@ export default function AssessmentPage() {
                   onClick={() => handleSelect(qi, oi)}
                   className={`w-full text-left px-4 py-3 rounded-lg border-2 text-sm transition-all ${
                     answers[qi] === oi
-                      ? 'border-blue-500 bg-blue-50 text-blue-800 font-medium'
+                      ? 'border-primary-600 bg-primary-50 text-blue-800 font-medium'
                       : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-gray-700'
                   }`}
                 >

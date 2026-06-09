@@ -1,8 +1,8 @@
-import React from 'react';
+﻿import React from 'react';
 
 export default function StatsCard({ label, value, icon, color = 'blue' }) {
   const colors = {
-    blue: 'bg-blue-50 text-blue-600',
+    blue: 'bg-primary-50 text-primary-700',
     green: 'bg-emerald-50 text-emerald-600',
     purple: 'bg-purple-50 text-purple-600',
     orange: 'bg-orange-50 text-orange-600',

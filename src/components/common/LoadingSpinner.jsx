@@ -1,11 +1,11 @@
-import React from 'react';
+﻿import React from 'react';
 
 export default function LoadingSpinner({ size = 'md', text = 'Loading...' }) {
   const sizes = { sm: 'h-5 w-5', md: 'h-8 w-8', lg: 'h-12 w-12' };
   return (
     <div className="flex flex-col items-center justify-center gap-3 py-12">
       <svg
-        className={`animate-spin text-blue-600 ${sizes[size]}`}
+        className={`animate-spin text-primary-700 ${sizes[size]}`}
         fill="none"
         viewBox="0 0 24 24"
       >

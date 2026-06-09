@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { getCourses } from '../../api/courseApi';
 import CourseCard from '../../components/dashboard/CourseCard';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
@@ -39,7 +39,7 @@ export default function CourseListPage() {
             placeholder="Search courses..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-9 pr-4 py-2 text-sm border border-gray-300 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="pl-9 pr-4 py-2 text-sm border border-gray-300 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-primary-700"
           />
         </div>
       </div>
