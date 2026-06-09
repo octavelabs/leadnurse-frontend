@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    @apply text-gray-900 bg-gray-50;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .prose-lesson {
+    @apply text-gray-800 leading-relaxed;
+  }
+  .prose-lesson h1 { @apply text-2xl font-bold mt-6 mb-3 text-gray-900; }
+  .prose-lesson h2 { @apply text-xl font-semibold mt-5 mb-2 text-gray-900; }
+  .prose-lesson h3 { @apply text-lg font-semibold mt-4 mb-2 text-gray-800; }
+  .prose-lesson p  { @apply mb-4; }
+  .prose-lesson ul { @apply list-disc list-inside mb-4 space-y-1; }
+  .prose-lesson ol { @apply list-decimal list-inside mb-4 space-y-1; }
+  .prose-lesson li { @apply text-gray-700; }
+  .prose-lesson strong { @apply font-semibold text-gray-900; }
+  .prose-lesson code { @apply bg-gray-100 text-pink-600 px-1.5 py-0.5 rounded text-sm font-mono; }
+  .prose-lesson pre { @apply bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto mb-4; }
+  .prose-lesson pre code { @apply bg-transparent text-gray-100 p-0; }
+  .prose-lesson blockquote { @apply border-l-4 border-blue-500 pl-4 italic text-gray-600 my-4; }
+}
