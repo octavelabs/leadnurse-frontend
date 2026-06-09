@@ -5,7 +5,7 @@ import { getWorker } from '../../../api/workerApi';
 import { getWorkerReferences, addReference, sendReferenceRequest, deleteReference, getReferenceResponse } from '../../../api/referenceApi';
 import ComplianceBadge from '../../../components/workforce/ComplianceBadge';
 
-// â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ”€”€”€ Helpers ”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€
 
 function InfoRow({ label, value }) {
   if (!value) return null;
@@ -58,7 +58,7 @@ function RatingBar({ label, value }) {
   );
 }
 
-// â”€â”€â”€ Add Reference Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ”€”€”€ Add Reference Modal ”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€
 
 function AddReferenceModal({ workerId, onClose, onAdded }) {
   const [form, setForm] = useState({ refereeName: '', refereeEmail: '', refereeJobTitle: '', refereeOrganisation: '', relationship: 'LINE_MANAGER', employmentStart: '', employmentEnd: '' });
@@ -129,7 +129,7 @@ function AddReferenceModal({ workerId, onClose, onAdded }) {
           <div className="flex gap-3 pt-2">
             <button type="submit" disabled={saving} className="flex-1 bg-primary-700 text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50 flex items-center justify-center gap-2">
               {saving && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
-              {saving ? 'Addingâ€¦' : 'Add Reference'}
+              {saving ? 'Adding…' : 'Add Reference'}
             </button>
             <button type="button" onClick={onClose} className="px-4 py-2 text-sm text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-50">Cancel</button>
           </div>
@@ -139,7 +139,7 @@ function AddReferenceModal({ workerId, onClose, onAdded }) {
   );
 }
 
-// â”€â”€â”€ View Response Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ”€”€”€ View Response Modal ”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€
 
 function ViewResponseModal({ referenceId, onClose }) {
   const [data, setData] = useState(null);
@@ -155,7 +155,7 @@ function ViewResponseModal({ referenceId, onClose }) {
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 sticky top-0 bg-white">
           <div>
             <h2 className="font-semibold text-gray-900">Reference Response</h2>
-            {data && <p className="text-xs text-gray-500 mt-0.5">From {data.refereeName} Â· {data.refereeOrganisation || data.refereeEmail}</p>}
+            {data && <p className="text-xs text-gray-500 mt-0.5">From {data.refereeName} · {data.refereeOrganisation || data.refereeEmail}</p>}
           </div>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
@@ -201,7 +201,7 @@ function ViewResponseModal({ referenceId, onClose }) {
               </div>
             )}
             <div className="bg-gray-50 rounded-lg p-3 text-xs text-gray-500 border-t border-gray-100">
-              Submitted {new Date(data.response.submittedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })} Â· Declaration signed
+              Submitted {new Date(data.response.submittedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })} · Declaration signed
             </div>
           </div>
         )}
@@ -210,7 +210,7 @@ function ViewResponseModal({ referenceId, onClose }) {
   );
 }
 
-// â”€â”€â”€ References Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ”€”€”€ References Section ”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€
 
 function ReferencesSection({ workerId }) {
   const [references, setReferences] = useState([]);
@@ -231,7 +231,7 @@ function ReferencesSection({ workerId }) {
     try {
       const res = await sendReferenceRequest(id);
       setReferences((prev) => prev.map((r) => r.id === id ? res.data.data : r));
-      toast.success('Reference request sent â€” link generated');
+      toast.success('Reference request sent "” link generated');
     } catch (err) {
       toast.error(err.response?.data?.message || 'Failed to send request');
     } finally {
@@ -294,13 +294,13 @@ function ReferencesSection({ workerId }) {
                     <p className="text-xs text-gray-500 mt-0.5">{ref.refereeEmail}</p>
                     {(ref.refereeJobTitle || ref.refereeOrganisation) && (
                       <p className="text-xs text-gray-400 mt-0.5">
-                        {[ref.refereeJobTitle, ref.refereeOrganisation].filter(Boolean).join(' Â· ')}
+                        {[ref.refereeJobTitle, ref.refereeOrganisation].filter(Boolean).join(' · ')}
                       </p>
                     )}
                     {ref.requestedAt && (
                       <p className="text-xs text-gray-400 mt-0.5">
                         Sent {new Date(ref.requestedAt).toLocaleDateString('en-GB')}
-                        {ref.completedAt && ` Â· Completed ${new Date(ref.completedAt).toLocaleDateString('en-GB')}`}
+                        {ref.completedAt && ` · Completed ${new Date(ref.completedAt).toLocaleDateString('en-GB')}`}
                       </p>
                     )}
                   </div>
@@ -317,7 +317,7 @@ function ReferencesSection({ workerId }) {
                         disabled={sending === ref.id}
                         className="text-xs bg-primary-50 text-primary-800 hover:bg-primary-100 px-2 py-1 rounded font-medium disabled:opacity-50"
                       >
-                        {sending === ref.id ? 'â€¦' : ref.status === 'PENDING' ? 'Send Request' : 'Resend'}
+                        {sending === ref.id ? '…' : ref.status === 'PENDING' ? 'Send Request' : 'Resend'}
                       </button>
                     )}
                     <button
@@ -341,7 +341,7 @@ function ReferencesSection({ workerId }) {
   );
 }
 
-// â”€â”€â”€ Main WorkerDetail page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ”€”€”€ Main WorkerDetail page ”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€
 
 export default function WorkerDetail() {
   const { id } = useParams();

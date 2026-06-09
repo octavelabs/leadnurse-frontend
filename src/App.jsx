@@ -38,6 +38,7 @@ import ReferenceMonitor from './pages/admin/workforce/ReferenceMonitor';
 import ReferencePage from './pages/ReferencePage';
 import TimesheetSignoffPage from './pages/TimesheetSignoffPage';
 import DocumentManagement from './pages/admin/workforce/DocumentManagement';
+import FacilityTimesheetPage from './pages/admin/workforce/FacilityTimesheetPage';
 import MyDocuments from './pages/worker/MyDocuments';
 
 // Workforce — Worker (Employee)
@@ -104,6 +105,7 @@ export default function App() {
           <Route path="/admin/workforce/facilities" element={<FacilityManagement />} />
           <Route path="/admin/workforce/references" element={<ReferenceMonitor />} />
           <Route path="/admin/workforce/documents" element={<DocumentManagement />} />
+          <Route path="/admin/workforce/timesheets" element={<FacilityTimesheetPage />} />
         </Route>
       </Route>
 

@@ -31,11 +31,11 @@ export default function MyEarnings() {
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-white rounded-xl border border-gray-200 p-5">
           <p className="text-sm text-gray-500">Total Paid</p>
-          <p className="text-3xl font-bold text-green-700 mt-1">Â£{totalPaid.toFixed(2)}</p>
+          <p className="text-3xl font-bold text-green-700 mt-1">£{totalPaid.toFixed(2)}</p>
         </div>
         <div className="bg-white rounded-xl border border-gray-200 p-5">
           <p className="text-sm text-gray-500">Pending</p>
-          <p className="text-3xl font-bold text-yellow-700 mt-1">Â£{totalPending.toFixed(2)}</p>
+          <p className="text-3xl font-bold text-yellow-700 mt-1">£{totalPending.toFixed(2)}</p>
         </div>
       </div>
 
@@ -48,21 +48,21 @@ export default function MyEarnings() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-semibold text-gray-900">
-                    {new Date(e.payrollReport.periodStart).toLocaleDateString('en-GB')} â€“ {new Date(e.payrollReport.periodEnd).toLocaleDateString('en-GB')}
+                    {new Date(e.payrollReport.periodStart).toLocaleDateString('en-GB')} "“ {new Date(e.payrollReport.periodEnd).toLocaleDateString('en-GB')}
                   </p>
                   <p className="text-sm text-gray-500 mt-0.5">
-                    {e.shiftsWorked} shifts Â· {e.regularHours.toFixed(1)}h regular Â· {e.overtimeHours.toFixed(1)}h overtime
+                    {e.shiftsWorked} shifts · {e.regularHours.toFixed(1)}h regular · {e.overtimeHours.toFixed(1)}h overtime
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xl font-bold text-gray-900">Â£{e.totalPay.toFixed(2)}</p>
+                  <p className="text-xl font-bold text-gray-900">£{e.totalPay.toFixed(2)}</p>
                   <span className={`text-xs font-medium px-2 py-0.5 rounded mt-1 inline-block ${STATUS_COLORS[e.payrollReport.status]}`}>{e.payrollReport.status}</span>
                 </div>
               </div>
               <div className="mt-3 pt-3 border-t border-gray-100 grid grid-cols-3 gap-2 text-xs text-gray-500">
-                <span>Regular: Â£{e.regularPay.toFixed(2)}</span>
-                <span>Overtime: Â£{e.overtimePay.toFixed(2)}</span>
-                <span>Rate: Â£{e.hourlyRate.toFixed(2)}/hr</span>
+                <span>Regular: £{e.regularPay.toFixed(2)}</span>
+                <span>Overtime: £{e.overtimePay.toFixed(2)}</span>
+                <span>Rate: £{e.hourlyRate.toFixed(2)}/hr</span>
               </div>
             </div>
           ))}

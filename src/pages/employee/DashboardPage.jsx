@@ -32,7 +32,7 @@ export default function DashboardPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-gray-900">
-          Welcome back, {user?.name?.split(' ')[0]}! ðŸ‘‹
+          Welcome back, {user?.name?.split(' ')[0]}! 👋
         </h1>
         <p className="text-gray-500 mt-1">Here's your learning progress at a glance.</p>
       </div>
@@ -81,7 +81,7 @@ export default function DashboardPage() {
           <h3 className="font-semibold text-gray-900 mb-1">No courses yet</h3>
           <p className="text-gray-500 text-sm mb-4">Browse available courses and start your learning journey.</p>
           <Link to="/courses" className="inline-flex items-center gap-1 text-primary-700 font-medium text-sm hover:text-primary-800">
-            Browse courses â†’
+            Browse courses →
           </Link>
         </div>
       )}

@@ -8,8 +8,8 @@ const TYPE_LABELS = { DAY: 'Day', NIGHT: 'Night', LONG_DAY: 'Long Day', ON_CALL:
 const TYPE_COLORS = { DAY: 'bg-sky-50 text-sky-700', NIGHT: 'bg-indigo-50 text-indigo-700', LONG_DAY: 'bg-orange-50 text-orange-700', ON_CALL: 'bg-purple-50 text-purple-700' };
 
 const APP_STATUS = {
-  PENDING:   { label: 'Applied â€” Awaiting review', cls: 'bg-yellow-50 text-yellow-800 border border-yellow-200' },
-  CONFIRMED: { label: 'âœ“ Confirmed', cls: 'bg-green-50 text-green-800 border border-green-200' },
+  PENDING:   { label: 'Applied "” Awaiting review', cls: 'bg-yellow-50 text-yellow-800 border border-yellow-200' },
+  CONFIRMED: { label: '✓ Confirmed', cls: 'bg-green-50 text-green-800 border border-green-200' },
   DECLINED:  { label: 'Not successful', cls: 'bg-red-50 text-red-700 border border-red-200' },
   CANCELLED: { label: 'Cancelled', cls: 'bg-gray-100 text-gray-500 border border-gray-200' },
 };
@@ -58,7 +58,7 @@ function ShiftCardFull({ shift, onApply, applying }) {
             <p className="text-xs text-gray-400">{shift.role?.name}</p>
           </div>
           <div className="text-right flex-shrink-0">
-            <p className="text-xl font-bold text-gray-900">Â£{shift.hourlyRate?.toFixed(2)}</p>
+            <p className="text-xl font-bold text-gray-900">£{shift.hourlyRate?.toFixed(2)}</p>
             <p className="text-xs text-gray-400">per hour</p>
           </div>
         </div>
@@ -75,7 +75,7 @@ function ShiftCardFull({ shift, onApply, applying }) {
             <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            {start.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })} â€“ {end.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
+            {start.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })} "“ {end.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
           </span>
         </div>
 
@@ -102,7 +102,7 @@ function ShiftCardFull({ shift, onApply, applying }) {
           </div>
           <span className="text-xs text-gray-500 whitespace-nowrap">
             {shift.confirmedCount}/{shift.requiredWorkers} filled
-            {spotsLeft > 0 && <span className="text-primary-700 font-medium"> Â· {spotsLeft} spot{spotsLeft !== 1 ? 's' : ''} left</span>}
+            {spotsLeft > 0 && <span className="text-primary-700 font-medium"> · {spotsLeft} spot{spotsLeft !== 1 ? 's' : ''} left</span>}
           </span>
         </div>
 
@@ -122,7 +122,7 @@ function ShiftCardFull({ shift, onApply, applying }) {
               {applying === shift.id ? (
                 <span className="flex items-center gap-1.5">
                   <span className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  Applyingâ€¦
+                  Applying…
                 </span>
               ) : 'Apply'}
             </button>
@@ -252,7 +252,7 @@ export default function AvailableShifts() {
       {loading ? (
         <div className="flex flex-col items-center justify-center py-16 gap-3">
           <div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" />
-          <p className="text-sm text-gray-400">Loading available shiftsâ€¦</p>
+          <p className="text-sm text-gray-400">Loading available shifts…</p>
         </div>
       ) : error ? (
         <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
@@ -274,7 +274,7 @@ export default function AvailableShifts() {
           </div>
           <div>
             <p className="font-medium text-gray-900">No shifts available right now</p>
-            <p className="text-sm text-gray-500 mt-1">{hasFilters ? 'Try adjusting your filters.' : 'Check back soon â€” new shifts are posted regularly.'}</p>
+            <p className="text-sm text-gray-500 mt-1">{hasFilters ? 'Try adjusting your filters.' : 'Check back soon "” new shifts are posted regularly.'}</p>
           </div>
           {hasFilters && (
             <button onClick={clearFilters} className="text-sm text-primary-700 hover:underline">Clear filters</button>

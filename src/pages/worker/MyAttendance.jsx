@@ -29,7 +29,7 @@ export default function MyAttendance() {
     <div className="p-6 max-w-5xl mx-auto space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-gray-900">My Attendance</h1>
-        <p className="text-sm text-gray-500 mt-0.5">{records.length} records Â· {totalHours.toFixed(1)}h regular Â· {totalOvertime.toFixed(1)}h overtime</p>
+        <p className="text-sm text-gray-500 mt-0.5">{records.length} records · {totalHours.toFixed(1)}h regular · {totalOvertime.toFixed(1)}h overtime</p>
       </div>
 
       <div className="bg-white rounded-xl border border-gray-200 p-4 flex flex-wrap gap-3">
@@ -60,9 +60,9 @@ export default function MyAttendance() {
                 <tr key={r.id} className="hover:bg-gray-50">
                   <td className="px-4 py-3 font-medium text-gray-900">{r.shift?.title}</td>
                   <td className="px-4 py-3 text-gray-500">{r.shift?.facility?.name}</td>
-                  <td className="px-4 py-3 text-gray-600">{r.checkInTime ? new Date(r.checkInTime).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : 'â€”'}</td>
-                  <td className="px-4 py-3 text-gray-600">{r.checkOutTime ? new Date(r.checkOutTime).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : 'â€”'}</td>
-                  <td className="px-4 py-3">{r.hoursWorked ? `${r.hoursWorked.toFixed(1)}h${r.overtimeHours > 0 ? ` +${r.overtimeHours.toFixed(1)}OT` : ''}` : 'â€”'}</td>
+                  <td className="px-4 py-3 text-gray-600">{r.checkInTime ? new Date(r.checkInTime).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '"”'}</td>
+                  <td className="px-4 py-3 text-gray-600">{r.checkOutTime ? new Date(r.checkOutTime).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '"”'}</td>
+                  <td className="px-4 py-3">{r.hoursWorked ? `${r.hoursWorked.toFixed(1)}h${r.overtimeHours > 0 ? ` +${r.overtimeHours.toFixed(1)}OT` : ''}` : '"”'}</td>
                   <td className="px-4 py-3"><AttendanceStatusBadge status={r.status} /></td>
                 </tr>
               ))}

@@ -32,7 +32,7 @@ export default function WorkerDashboard() {
   if (loading) return <div className="flex items-center justify-center h-64"><div className="w-8 h-8 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" /></div>;
 
   return (
-    <div className="p-6 max-w-5xl mx-auto space-y-6">
+    <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-gray-900">Welcome back, {user?.name?.split(' ')[0]}</h1>
         <p className="text-gray-500 text-sm mt-1">Here's your workforce overview</p>
@@ -64,7 +64,7 @@ export default function WorkerDashboard() {
               </div>
             ))}
           </div>
-          <Link to="/my-compliance" className="text-sm text-red-700 font-medium mt-3 block hover:underline">View all compliance â†’</Link>
+          <Link to="/my-compliance" className="text-sm text-red-700 font-medium mt-3 block hover:underline">View all compliance →</Link>
         </div>
       )}
 

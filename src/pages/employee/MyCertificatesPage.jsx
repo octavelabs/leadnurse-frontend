@@ -45,7 +45,7 @@ export default function MyCertificatesPage() {
           </div>
           <h3 className="font-semibold text-gray-900 mb-1">No certificates yet</h3>
           <p className="text-gray-500 text-sm mb-4">Complete courses and pass assessments to earn certificates.</p>
-          <Link to="/courses" className="text-primary-700 font-medium text-sm hover:text-primary-800">Browse courses â†’</Link>
+          <Link to="/courses" className="text-primary-700 font-medium text-sm hover:text-primary-800">Browse courses →</Link>
         </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2">

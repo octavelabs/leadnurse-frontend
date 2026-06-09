@@ -69,7 +69,7 @@ export default function WorkerRecords() {
             </svg>
             <input
               className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-700"
-              placeholder="Name, emailâ€¦"
+              placeholder="Name, email…"
               value={search}
               onChange={handleSearchChange}
             />
@@ -151,7 +151,7 @@ export default function WorkerRecords() {
                         <span>{w.city}{w.postcode ? `, ${w.postcode}` : ''}</span>
                       </div>
                     ) : (
-                      <span className="text-xs text-gray-400">â€”</span>
+                      <span className="text-xs text-gray-400">"”</span>
                     )}
                   </td>
                   <td className="px-4 py-3">
@@ -165,7 +165,7 @@ export default function WorkerRecords() {
                   <td className="px-4 py-3">
                     {getWorstCompliance(w.compliance)
                       ? <ComplianceBadge status={getWorstCompliance(w.compliance)} />
-                      : <span className="text-xs text-gray-400">â€”</span>}
+                      : <span className="text-xs text-gray-400">"”</span>}
                   </td>
                   <td className="px-4 py-3 text-gray-500 whitespace-nowrap">
                     {new Date(w.createdAt).toLocaleDateString('en-GB')}

@@ -15,7 +15,7 @@ function StarRating({ value, onChange }) {
           onMouseLeave={() => setHovered(0)}
           className="text-2xl transition-transform hover:scale-110"
         >
-          <span className={n <= (hovered || value) ? 'text-yellow-400' : 'text-gray-200'}>â˜…</span>
+          <span className={n <= (hovered || value) ? 'text-yellow-400' : 'text-gray-200'}>˜…</span>
         </button>
       ))}
       {value > 0 && (
@@ -68,8 +68,8 @@ export default function TimesheetSignoffPage() {
     } finally { setSubmitting(false); }
   };
 
-  const fmt = (d) => d ? new Date(d).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'â€”';
-  const fmtDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) : 'â€”';
+  const fmt = (d) => d ? new Date(d).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '"”';
+  const fmtDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) : '"”';
 
   if (loading) return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -123,7 +123,7 @@ export default function TimesheetSignoffPage() {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-500">Shift</span>
-              <span className="font-medium text-gray-900">{context?.shiftTitle || 'â€”'}</span>
+              <span className="font-medium text-gray-900">{context?.shiftTitle || '"”'}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-500">Facility</span>
@@ -177,7 +177,7 @@ export default function TimesheetSignoffPage() {
               value={form.feedback}
               onChange={(e) => setField('feedback', e.target.value)}
               className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary-700"
-              placeholder="Any comments on the worker's performance, punctuality, or conductâ€¦"
+              placeholder="Any comments on the worker's performance, punctuality, or conduct…"
             />
           </div>
 
@@ -206,7 +206,7 @@ export default function TimesheetSignoffPage() {
             className="w-full bg-primary-700 text-white py-3 rounded-xl text-sm font-semibold hover:bg-primary-800 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {submitting && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
-            {submitting ? 'Submittingâ€¦' : 'Confirm & Sign Off Timesheet'}
+            {submitting ? 'Submitting…' : 'Confirm & Sign Off Timesheet'}
           </button>
           <p className="text-xs text-gray-400 text-center pb-6">Once confirmed, this cannot be undone. Contact the employer if there is an error.</p>
         </form>

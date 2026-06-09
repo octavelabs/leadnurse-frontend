@@ -11,3 +11,4 @@ export const getMyShifts = (params) => api.get('/shifts/my', { params });
 export const getAvailableShifts = (params) => api.get('/shifts/available', { params });
 export const applyForShift = (shiftId) => api.post(`/shifts/${shiftId}/apply`);
 export const reviewApplication = (assignmentId, action) => api.patch(`/shifts/assign/${assignmentId}/review`, { action });
+export const getFacilityTimesheet = (params) => api.get('/shifts/timesheet', { params });

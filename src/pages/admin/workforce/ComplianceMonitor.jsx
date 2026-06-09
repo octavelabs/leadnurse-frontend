@@ -84,8 +84,8 @@ export default function ComplianceMonitor() {
                   <td className="px-4 py-3 font-medium text-gray-900">{r.user?.name}</td>
                   <td className="px-4 py-3 text-gray-600">{r.type.replace(/_/g, ' ')}</td>
                   <td className="px-4 py-3"><ComplianceBadge status={r.status} /></td>
-                  <td className="px-4 py-3 text-gray-600">{r.expiryDate ? new Date(r.expiryDate).toLocaleDateString('en-GB') : 'â€”'}</td>
-                  <td className="px-4 py-3 text-gray-500">{r.documentNumber || 'â€”'}</td>
+                  <td className="px-4 py-3 text-gray-600">{r.expiryDate ? new Date(r.expiryDate).toLocaleDateString('en-GB') : '"”'}</td>
+                  <td className="px-4 py-3 text-gray-500">{r.documentNumber || '"”'}</td>
                   <td className="px-4 py-3">
                     {r.documentUrl ? (
                       <a href={r.documentUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-primary-700 hover:text-primary-800 font-medium">
@@ -95,7 +95,7 @@ export default function ComplianceMonitor() {
                         </svg>
                         View
                       </a>
-                    ) : <span className="text-xs text-gray-400">â€”</span>}
+                    ) : <span className="text-xs text-gray-400">"”</span>}
                   </td>
                   <td className="px-4 py-3">
                     <button onClick={() => setEditRecord({ ...r, userId: r.user?.id })} className="text-xs text-primary-700 hover:underline">Edit</button>
@@ -113,7 +113,7 @@ export default function ComplianceMonitor() {
             <div className="flex items-start justify-between">
               <div>
                 <h2 className="font-semibold text-gray-900">Edit Compliance Record</h2>
-                <p className="text-xs text-gray-500 mt-0.5">{editRecord.user?.name} Â· {editRecord.type?.replace(/_/g, ' ')}</p>
+                <p className="text-xs text-gray-500 mt-0.5">{editRecord.user?.name} · {editRecord.type?.replace(/_/g, ' ')}</p>
               </div>
               {editRecord.documentUrl && (
                 <a href={editRecord.documentUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs text-primary-700 hover:text-primary-800 font-medium bg-primary-50 px-3 py-1.5 rounded-lg flex-shrink-0">
@@ -146,7 +146,7 @@ export default function ComplianceMonitor() {
               <input type="text" className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2" value={editRecord.documentNumber || ''} onChange={(e) => setEditRecord({ ...editRecord, documentNumber: e.target.value })} />
             </div>
             <div className="flex gap-3">
-              <button onClick={handleSave} disabled={saving} className="bg-primary-700 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50">{saving ? 'Savingâ€¦' : 'Save'}</button>
+              <button onClick={handleSave} disabled={saving} className="bg-primary-700 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50">{saving ? 'Saving…' : 'Save'}</button>
               <button onClick={() => setEditRecord(null)} className="px-4 py-2 text-sm border border-gray-200 rounded-lg hover:bg-gray-50">Cancel</button>
             </div>
           </div>

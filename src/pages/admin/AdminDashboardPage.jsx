@@ -52,7 +52,7 @@ export default function AdminDashboardPage() {
       <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
           <h2 className="font-semibold text-gray-900">Recent Courses</h2>
-          <Link to="/admin/courses" className="text-sm text-primary-700 hover:text-primary-800">View all â†’</Link>
+          <Link to="/admin/courses" className="text-sm text-primary-700 hover:text-primary-800">View all →</Link>
         </div>
         {courses.length === 0 ? (
           <div className="px-6 py-10 text-center text-gray-500">No courses yet.</div>
@@ -63,7 +63,7 @@ export default function AdminDashboardPage() {
                 <div className="flex-1 min-w-0">
                   <p className="font-medium text-gray-900 truncate">{course.title}</p>
                   <p className="text-sm text-gray-500 mt-0.5">
-                    {course._count?.lessons ?? 0} lessons Â· {course._count?.enrollments ?? 0} enrolled
+                    {course._count?.lessons ?? 0} lessons · {course._count?.enrollments ?? 0} enrolled
                   </p>
                 </div>
                 <div className="flex items-center gap-2">

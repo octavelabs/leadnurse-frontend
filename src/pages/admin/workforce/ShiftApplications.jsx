@@ -91,14 +91,14 @@ export default function ShiftApplications() {
                         disabled={!!reviewing}
                         className="text-xs bg-green-600 text-white px-3 py-1.5 rounded-lg hover:bg-green-700 disabled:opacity-50"
                       >
-                        {reviewing === a.id + 'confirm' ? 'â€¦' : 'Confirm'}
+                        {reviewing === a.id + 'confirm' ? '…' : 'Confirm'}
                       </button>
                       <button
                         onClick={() => handleReview(a.id, 'decline')}
                         disabled={!!reviewing}
                         className="text-xs bg-red-50 text-red-600 border border-red-200 px-3 py-1.5 rounded-lg hover:bg-red-100 disabled:opacity-50"
                       >
-                        {reviewing === a.id + 'decline' ? 'â€¦' : 'Decline'}
+                        {reviewing === a.id + 'decline' ? '…' : 'Decline'}
                       </button>
                     </div>
                   </td>

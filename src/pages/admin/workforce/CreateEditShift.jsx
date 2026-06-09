@@ -39,7 +39,12 @@ export default function CreateEditShift() {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      const payload = { ...data, hourlyRate: parseFloat(data.hourlyRate), requiredWorkers: parseInt(data.requiredWorkers) };
+      const payload = {
+        ...data,
+        hourlyRate: parseFloat(data.hourlyRate),
+        facilityHourlyRate: parseFloat(data.facilityHourlyRate),
+        requiredWorkers: parseInt(data.requiredWorkers),
+      };
       if (isEdit) await updateShift(id, payload);
       else await createShift(payload);
       toast.success(isEdit ? 'Shift updated' : 'Shift created');
@@ -84,17 +89,24 @@ export default function CreateEditShift() {
             <Input label="End Time" type="datetime-local" error={errors.endTime?.message} {...register('endTime', { required: true })} />
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Shift Type</label>
               <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" {...register('shiftType')}>
                 {['DAY','NIGHT','LONG_DAY','ON_CALL'].map((t) => <option key={t} value={t}>{t.replace('_',' ')}</option>)}
               </select>
             </div>
-            <Input label="Hourly Rate (£)" type="number" step="0.01" placeholder="12.50" error={errors.hourlyRate?.message}
-              {...register('hourlyRate', { required: 'Rate required', min: { value: 0.01, message: 'Must be > 0' } })} />
             <Input label="Workers Required" type="number" min="1" placeholder="1" error={errors.requiredWorkers?.message}
               {...register('requiredWorkers', { required: true, min: 1 })} />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <Input label="Employee Hourly Rate (£)" type="number" step="0.01" placeholder="12.50"
+              error={errors.hourlyRate?.message}
+              {...register('hourlyRate', { required: 'Employee rate required', min: { value: 0.01, message: 'Must be > 0' } })} />
+            <Input label="Facility Hourly Rate (£)" type="number" step="0.01" placeholder="25.00"
+              error={errors.facilityHourlyRate?.message}
+              {...register('facilityHourlyRate', { required: 'Facility rate required', min: { value: 0.01, message: 'Must be > 0' } })} />
           </div>
 
           <div>

@@ -54,13 +54,13 @@ function SignModal({ sig, onClose, onSigned }) {
               placeholder="Type your name exactly as shown above"
             />
             {typed && !confirmed && (
-              <p className="text-xs text-red-500 mt-1">Name does not match â€” type exactly: {user?.name}</p>
+              <p className="text-xs text-red-500 mt-1">Name does not match "” type exactly: {user?.name}</p>
             )}
           </div>
           <div className="flex gap-3">
             <button onClick={handleSign} disabled={!confirmed || saving} className="flex-1 bg-primary-700 text-white py-2 rounded-lg text-sm font-semibold hover:bg-primary-800 disabled:opacity-50 flex items-center justify-center gap-2">
               {saving && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
-              {saving ? 'Signingâ€¦' : 'Sign Document'}
+              {saving ? 'Signing…' : 'Sign Document'}
             </button>
             <button onClick={onClose} className="px-4 py-2 text-sm text-gray-600 border border-gray-200 rounded-lg">Cancel</button>
           </div>

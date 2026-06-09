@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 const TYPES = ['HOSPITAL', 'CARE_HOME', 'CLINIC', 'GP_SURGERY', 'COMMUNITY_HEALTH', 'OTHER'];
 const EMPTY = { name: '', type: 'HOSPITAL', address: '', city: '', postcode: '', contactName: '', contactEmail: '', contactPhone: '' };
 
-// Defined outside component so React sees a stable type reference â€” fixes the
+// Defined outside component so React sees a stable type reference "” fixes the
 // "input loses focus after every keystroke" bug caused by inline component defs.
 function FormField({ label, value, onChange, type = 'text', placeholder }) {
   return (
@@ -75,7 +75,7 @@ export default function FacilityManagement() {
       toast.success('Facility deleted');
       load();
     } catch {
-      toast.error('Cannot delete â€” this facility may have existing shifts');
+      toast.error('Cannot delete "” this facility may have existing shifts');
     }
   }
 
@@ -179,7 +179,7 @@ export default function FacilityManagement() {
                 disabled={saving}
                 className="bg-primary-700 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50 transition-colors"
               >
-                {saving ? 'Savingâ€¦' : form.id ? 'Update Facility' : 'Create Facility'}
+                {saving ? 'Saving…' : form.id ? 'Update Facility' : 'Create Facility'}
               </button>
               <button
                 onClick={() => setForm(null)}

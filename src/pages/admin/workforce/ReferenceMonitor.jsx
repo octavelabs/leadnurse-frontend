@@ -62,7 +62,7 @@ export default function ReferenceMonitor() {
           <div className="bg-white rounded-xl border border-gray-200 p-4">
             <p className="text-xs text-gray-500">Awaiting Response</p>
             <p className="text-2xl font-bold text-yellow-600 mt-1">{summary.awaitingResponse}</p>
-            <p className="text-xs text-gray-400 mt-0.5">{summary.pending} unsent Â· {summary.sent} sent</p>
+            <p className="text-xs text-gray-400 mt-0.5">{summary.pending} unsent · {summary.sent} sent</p>
           </div>
           <div className="bg-white rounded-xl border border-gray-200 p-4">
             <p className="text-xs text-gray-500">Completed</p>
@@ -137,10 +137,10 @@ export default function ReferenceMonitor() {
                   </td>
                   <td className="px-4 py-3"><StatusBadge status={r.status} /></td>
                   <td className="px-4 py-3 text-gray-500 text-xs">
-                    {r.requestedAt ? new Date(r.requestedAt).toLocaleDateString('en-GB') : 'â€”'}
+                    {r.requestedAt ? new Date(r.requestedAt).toLocaleDateString('en-GB') : '"”'}
                   </td>
                   <td className="px-4 py-3 text-gray-500 text-xs">
-                    {r.completedAt ? new Date(r.completedAt).toLocaleDateString('en-GB') : 'â€”'}
+                    {r.completedAt ? new Date(r.completedAt).toLocaleDateString('en-GB') : '"”'}
                   </td>
                   <td className="px-4 py-3">
                     {r.status === 'COMPLETED' && (

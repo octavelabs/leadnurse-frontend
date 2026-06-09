@@ -137,7 +137,7 @@ export default function ReferencePage() {
   );
 
   const fmt = (d) => d ? new Date(d).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }) : null;
-  const period = [fmt(context?.employmentStart), fmt(context?.employmentEnd)].filter(Boolean).join(' â€“ ');
+  const period = [fmt(context?.employmentStart), fmt(context?.employmentEnd)].filter(Boolean).join(' "“ ');
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
@@ -296,7 +296,7 @@ export default function ReferencePage() {
             className="w-full bg-primary-700 text-white py-3 rounded-xl text-sm font-semibold hover:bg-primary-800 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
           >
             {submitting && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
-            {submitting ? 'Submittingâ€¦' : 'Submit Reference'}
+            {submitting ? 'Submitting…' : 'Submit Reference'}
           </button>
 
           <p className="text-xs text-gray-400 text-center pb-6">

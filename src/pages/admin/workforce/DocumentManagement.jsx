@@ -44,11 +44,11 @@ function UploadModal({ onClose, onUploaded }) {
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Document Title <span className="text-red-500">*</span></label>
-            <input required value={title} onChange={(e) => setTitle(e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700" placeholder="e.g. Employment Contract â€” June 2026" />
+            <input required value={title} onChange={(e) => setTitle(e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700" placeholder="e.g. Employment Contract — June 2026" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Description <span className="text-gray-400 font-normal">(optional)</span></label>
-            <textarea rows={2} value={description} onChange={(e) => setDescription(e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary-700" placeholder="Brief description of what this document isâ€¦" />
+            <textarea rows={2} value={description} onChange={(e) => setDescription(e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary-700" placeholder="Brief description of what this document is…" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">File <span className="text-red-500">*</span></label>
@@ -59,7 +59,7 @@ function UploadModal({ onClose, onUploaded }) {
               ) : (
                 <>
                   <svg className="w-8 h-8 text-gray-300 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
-                  <p className="text-sm text-gray-500">PDF or Image Â· Max 10MB</p>
+                  <p className="text-sm text-gray-500">PDF or Image · Max 10MB</p>
                 </>
               )}
             </div>
@@ -67,7 +67,7 @@ function UploadModal({ onClose, onUploaded }) {
           <div className="flex gap-3 pt-1">
             <button type="submit" disabled={saving || !title.trim() || !file} className="flex-1 bg-primary-700 text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50 flex items-center justify-center gap-2">
               {saving && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
-              {saving ? 'Uploadingâ€¦' : 'Upload Document'}
+              {saving ? 'Uploading…' : 'Upload Document'}
             </button>
             <button type="button" onClick={onClose} className="px-4 py-2 text-sm text-gray-600 border border-gray-200 rounded-lg">Cancel</button>
           </div>
@@ -140,7 +140,7 @@ function AssignModal({ doc, onClose, onAssigned }) {
           </div>
         )}
         <div className="px-6 py-4 border-t border-gray-100 flex gap-3">
-          <button onClick={handleSave} disabled={saving} className="flex-1 bg-primary-700 text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50">{saving ? 'Assigningâ€¦' : 'Assign Selected'}</button>
+          <button onClick={handleSave} disabled={saving} className="flex-1 bg-primary-700 text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50">{saving ? 'AsSigning…' : 'Assign Selected'}</button>
           <button onClick={onClose} className="px-4 py-2 text-sm text-gray-600 border border-gray-200 rounded-lg">Cancel</button>
         </div>
       </div>

@@ -109,7 +109,7 @@ export default function ProfilePage() {
           >
             {user?.avatarUrl ? 'Change photo' : 'Upload photo'}
           </button>
-          <p className="text-xs text-gray-400 mt-0.5">JPG, PNG or WebP Â· Max 5MB</p>
+          <p className="text-xs text-gray-400 mt-0.5">JPG, PNG or WebP · Max 5MB</p>
         </div>
       </div>
 
@@ -198,7 +198,7 @@ export default function ProfilePage() {
           </div>
           <div className="flex justify-between">
             <span className="text-gray-500">Member since</span>
-            <span className="text-gray-900">{user?.createdAt ? new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }) : 'â€”'}</span>
+            <span className="text-gray-900">{user?.createdAt ? new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }) : '"”'}</span>
           </div>
         </div>
         <p className="text-xs text-gray-400 mt-3">To change your email or password, please contact your administrator.</p>

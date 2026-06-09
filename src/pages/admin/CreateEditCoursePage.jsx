@@ -92,7 +92,7 @@ export default function CreateEditCoursePage() {
             />
             <label htmlFor="isPublished" className="text-sm text-gray-700">
               <span className="font-medium">Publish immediately</span>
-              <span className="text-gray-500 ml-1">â€” make this course visible to employees</span>
+              <span className="text-gray-500 ml-1">"” make this course visible to employees</span>
             </label>
           </div>
 

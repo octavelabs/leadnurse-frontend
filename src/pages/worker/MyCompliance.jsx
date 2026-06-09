@@ -19,7 +19,7 @@ const TYPE_LABELS = {
 const ALL_TYPES = Object.keys(TYPE_LABELS);
 
 function DocLink({ url }) {
-  if (!url) return <span className="text-xs text-gray-400">â€”</span>;
+  if (!url) return <span className="text-xs text-gray-400">"”</span>;
   return (
     <a
       href={url}
@@ -72,7 +72,7 @@ function ReplaceButton({ record, onUploaded }) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
           </svg>
         )}
-        {uploading ? 'Uploadingâ€¦' : record.documentUrl ? 'Replace' : 'Upload'}
+        {uploading ? 'Uploading…' : record.documentUrl ? 'Replace' : 'Upload'}
       </button>
     </>
   );
@@ -123,7 +123,7 @@ function UploadModal({ existingTypes, onClose, onUploaded }) {
               required
               className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-700"
             >
-              <option value="">Select a document typeâ€¦</option>
+              <option value="">Select a document type…</option>
               {ALL_TYPES.map((t) => (
                 <option key={t} value={t}>{TYPE_LABELS[t]}</option>
               ))}
@@ -170,7 +170,7 @@ function UploadModal({ existingTypes, onClose, onUploaded }) {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                   </svg>
                   <p className="text-sm text-gray-500">Click to select a file</p>
-                  <p className="text-xs text-gray-400 mt-1">JPG, PNG or PDF Â· Max 10MB</p>
+                  <p className="text-xs text-gray-400 mt-1">JPG, PNG or PDF · Max 10MB</p>
                 </>
               )}
             </div>
@@ -183,7 +183,7 @@ function UploadModal({ existingTypes, onClose, onUploaded }) {
               className="flex-1 bg-primary-700 text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {uploading && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
-              {uploading ? 'Submittingâ€¦' : 'Submit for Review'}
+              {uploading ? 'Submitting…' : 'Submit for Review'}
             </button>
             <button
               type="button"
@@ -280,7 +280,7 @@ export default function MyCompliance() {
                   </td>
                   <td className="px-4 py-3"><ComplianceBadge status={r.status} /></td>
                   <td className="px-4 py-3 text-gray-500">
-                    {r.expiryDate ? new Date(r.expiryDate).toLocaleDateString('en-GB') : 'â€”'}
+                    {r.expiryDate ? new Date(r.expiryDate).toLocaleDateString('en-GB') : '"”'}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
@@ -293,7 +293,7 @@ export default function MyCompliance() {
             </tbody>
           </table>
           <div className="px-4 py-2.5 border-t border-gray-100 bg-gray-50">
-            <p className="text-xs text-gray-400">Accepted formats: JPG, PNG, PDF Â· Max 10MB per file</p>
+            <p className="text-xs text-gray-400">Accepted formats: JPG, PNG, PDF · Max 10MB per file</p>
           </div>
         </div>
       )}

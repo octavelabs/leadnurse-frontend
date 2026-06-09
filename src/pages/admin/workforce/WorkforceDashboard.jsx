@@ -7,7 +7,7 @@ function StatCard({ label, value, sub, color = 'blue', to }) {
   const content = (
     <div className="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-sm transition-shadow">
       <p className="text-sm text-gray-500">{label}</p>
-      <p className={`text-3xl font-bold mt-1 ${colorMap[color].split(' ')[1]}`}>{value ?? 'â€”'}</p>
+      <p className={`text-3xl font-bold mt-1 ${colorMap[color].split(' ')[1]}`}>{value ?? '—'}</p>
       {sub && <p className="text-xs text-gray-400 mt-1">{sub}</p>}
     </div>
   );
@@ -43,7 +43,7 @@ export default function WorkforceDashboard() {
           label="References Awaiting Response"
           value={stats?.referencesAwaitingResponse}
           color="yellow"
-          sub="Pending or sent â€” no reply yet"
+          sub="Pending or sent — no reply yet"
           to="/admin/workforce/references"
         />
         <StatCard
