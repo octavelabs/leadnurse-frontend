@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
@@ -204,20 +204,20 @@ export default function ProfilePage() {
       </div>
 
       {/* Change password */}
-      <div className=”bg-white rounded-xl border border-gray-200 p-6”>
-        <h2 className=”text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4”>Change Password</h2>
-        <form onSubmit={handleSubmitPwd(onChangePassword)} className=”space-y-4”>
+      <div className="bg-white rounded-xl border border-gray-200 p-6">
+        <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4">Change Password</h2>
+        <form onSubmit={handleSubmitPwd(onChangePassword)} className="space-y-4">
           <Input
-            label=”Current password”
-            type=”password”
-            placeholder=”Your current password”
+            label="Current password"
+            type="password"
+            placeholder="Your current password"
             error={pwdErrors.currentPassword?.message}
             {...registerPwd('currentPassword', { required: 'Current password is required' })}
           />
           <Input
-            label=”New password”
-            type=”password”
-            placeholder=”Min. 8 characters”
+            label="New password"
+            type="password"
+            placeholder="Min. 8 characters"
             error={pwdErrors.newPassword?.message}
             {...registerPwd('newPassword', {
               required: 'New password is required',
@@ -226,32 +226,32 @@ export default function ProfilePage() {
             })}
           />
           <Input
-            label=”Confirm new password”
-            type=”password”
-            placeholder=”Re-enter new password”
+            label="Confirm new password"
+            type="password"
+            placeholder="Re-enter new password"
             error={pwdErrors.confirmNewPassword?.message}
             {...registerPwd('confirmNewPassword', {
               required: 'Please confirm your new password',
               validate: (v) => v === watchPwd('newPassword') || 'Passwords do not match',
             })}
           />
-          <Button type=”submit” loading={changingPassword} size=”sm”>
+          <Button type="submit" loading={changingPassword} size="sm">
             Update password
           </Button>
         </form>
       </div>
 
       {/* Read-only account info */}
-      <div className=”bg-gray-50 rounded-xl border border-gray-200 p-5”>
-        <h2 className=”text-sm font-semibold text-gray-600 mb-3”>Account Details</h2>
-        <div className=”space-y-2 text-sm”>
-          <div className=”flex justify-between”>
-            <span className=”text-gray-500”>Email</span>
-            <span className=”text-gray-900”>{user?.email}</span>
+      <div className="bg-gray-50 rounded-xl border border-gray-200 p-5">
+        <h2 className="text-sm font-semibold text-gray-600 mb-3">Account Details</h2>
+        <div className="space-y-2 text-sm">
+          <div className="flex justify-between">
+            <span className="text-gray-500">Email</span>
+            <span className="text-gray-900">{user?.email}</span>
           </div>
-          <div className=”flex justify-between”>
-            <span className=”text-gray-500”>Member since</span>
-            <span className=”text-gray-900”>{user?.createdAt ? new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }) : ''}</span>
+          <div className="flex justify-between">
+            <span className="text-gray-500">Member since</span>
+            <span className="text-gray-900">{user?.createdAt ? new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }) : ''}</span>
           </div>
         </div>
       </div>
