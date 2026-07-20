@@ -6,6 +6,7 @@ import { loginUser } from '../../api/authApi';
 import { useAuth } from '../../context/AuthContext';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
+import { resendVerification } from '../../api/authApi';
 
 const LOGO_URL = 'https://leadnurse.co.uk/wp-content/uploads/2026/02/Lead-Nurse-Logo-e1771949504571-1024x377.png';
 
@@ -14,16 +15,38 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
 
+  const [unverifiedEmail, setUnverifiedEmail] = useState(null);
+  const [resendLoading, setResendLoading] = useState(false);
+
   const onSubmit = async (data) => {
     setLoading(true);
+    setUnverifiedEmail(null);
     try {
       const res = await loginUser(data);
       toast.success('Welcome back!');
-      login(res.data.data.user, res.data.data.token);
+      login(res.data.data.user);
     } catch (err) {
-      toast.error(err.response?.data?.message || 'Login failed');
+      const msg = err.response?.data?.message || 'Login failed';
+      if (msg.toLowerCase().includes('verify your email')) {
+        setUnverifiedEmail(data.email);
+      }
+      toast.error(msg);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleResend = async () => {
+    if (!unverifiedEmail) return;
+    setResendLoading(true);
+    try {
+      await resendVerification(unverifiedEmail);
+      toast.success('Verification email resent — check your inbox.');
+      setUnverifiedEmail(null);
+    } catch {
+      toast.error('Failed to resend. Please try again.');
+    } finally {
+      setResendLoading(false);
     }
   };
 
@@ -77,7 +100,31 @@ export default function LoginPage() {
                 {...register('password', { required: 'Password is required' })}
               />
 
-              <Button type="submit" className="w-full mt-2" loading={loading} size="lg">
+              <div className="flex items-center justify-between mt-1">
+                <label className="flex items-center gap-2 cursor-pointer select-none">
+                  <input type="checkbox" {...register('rememberMe')} className="accent-primary-700" />
+                  <span className="text-sm text-gray-600">Remember me for 30 days</span>
+                </label>
+                <Link to="/forgot-password" className="text-sm text-primary-700 hover:text-primary-800 font-medium">
+                  Forgot password?
+                </Link>
+              </div>
+
+              {unverifiedEmail && (
+                <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm text-amber-800">
+                  Your email is not verified.{' '}
+                  <button
+                    type="button"
+                    onClick={handleResend}
+                    disabled={resendLoading}
+                    className="font-semibold underline disabled:opacity-50"
+                  >
+                    {resendLoading ? 'Sending…' : 'Resend verification email'}
+                  </button>
+                </div>
+              )}
+
+              <Button type="submit" className="w-full" loading={loading} size="lg">
                 Sign in
               </Button>
             </form>
@@ -89,12 +136,6 @@ export default function LoginPage() {
                   Create one free
                 </Link>
               </p>
-            </div>
-
-            <div className="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500 space-y-0.5">
-              <p className="font-medium text-gray-600">Demo accounts:</p>
-              <p>Admin: admin@leadnurse.com · Admin@123</p>
-              <p>Staff: amara.okonkwo@leadnurse-test.com · Password@123</p>
             </div>
           </div>
         </div>

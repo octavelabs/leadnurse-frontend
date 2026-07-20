@@ -6,6 +6,10 @@ import Layout from './components/layout/Layout';
 // Auth pages
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
+import ForgotPasswordPage from './pages/auth/ForgotPasswordPage';
+import ResetPasswordPage from './pages/auth/ResetPasswordPage';
+import VerifyEmailPage from './pages/auth/VerifyEmailPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 // Employee pages
 import DashboardPage from './pages/employee/DashboardPage';
@@ -56,6 +60,9 @@ export default function App() {
       {/* Public */}
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
+      <Route path="/verify-email/:token" element={<VerifyEmailPage />} />
       <Route path="/references/:token" element={<ReferencePage />} />
       <Route path="/timesheet-signoff/:token" element={<TimesheetSignoffPage />} />
 
@@ -110,7 +117,7 @@ export default function App() {
       </Route>
 
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
-      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }

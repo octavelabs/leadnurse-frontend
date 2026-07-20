@@ -123,7 +123,32 @@ function AssignModal({ doc, onClose, onAssigned }) {
         {loading ? (
           <div className="flex justify-center py-8"><div className="w-6 h-6 border-4 border-primary-700 border-t-transparent rounded-full animate-spin" /></div>
         ) : (
-          <div className="flex-1 overflow-y-auto px-6 py-3 space-y-1">
+          <div className="flex-1 overflow-y-auto">
+            <div className="flex items-center justify-between px-6 py-2.5 border-b border-gray-100 bg-gray-50 sticky top-0">
+              <label className="flex items-center gap-2.5 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  className="accent-primary-700"
+                  checked={workers.length > 0 && workers.every((w) => {
+                    const alreadySigned = doc.signatures.find((s) => s.userId === w.id && s.status === 'SIGNED');
+                    return alreadySigned || selected.has(w.id);
+                  })}
+                  onChange={() => {
+                    const assignable = workers.filter((w) => !doc.signatures.find((s) => s.userId === w.id && s.status === 'SIGNED'));
+                    const allSelected = assignable.every((w) => selected.has(w.id));
+                    setSelected((prev) => {
+                      const n = new Set(prev);
+                      if (allSelected) { assignable.forEach((w) => n.delete(w.id)); }
+                      else { assignable.forEach((w) => n.add(w.id)); }
+                      return n;
+                    });
+                  }}
+                />
+                <span className="text-xs font-semibold text-gray-700">Select all employees</span>
+              </label>
+              <span className="text-xs text-gray-400">{selected.size} selected</span>
+            </div>
+            <div className="px-6 py-2 space-y-1">
             {workers.map((w) => {
               const alreadySigned = doc.signatures.find((s) => s.userId === w.id && s.status === 'SIGNED');
               return (
@@ -137,10 +162,11 @@ function AssignModal({ doc, onClose, onAssigned }) {
                 </label>
               );
             })}
+            </div>
           </div>
         )}
         <div className="px-6 py-4 border-t border-gray-100 flex gap-3">
-          <button onClick={handleSave} disabled={saving} className="flex-1 bg-primary-700 text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50">{saving ? 'AsSigning…' : 'Assign Selected'}</button>
+          <button onClick={handleSave} disabled={saving} className="flex-1 bg-primary-700 text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-800 disabled:opacity-50">{saving ? 'Assigning…' : 'Assign Selected'}</button>
           <button onClick={onClose} className="px-4 py-2 text-sm text-gray-600 border border-gray-200 rounded-lg">Cancel</button>
         </div>
       </div>
