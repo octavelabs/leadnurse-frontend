@@ -3,14 +3,18 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
 import { updateMyProfile, uploadAvatar } from '../api/workerApi';
+import { changePassword } from '../api/authApi';
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 
 export default function ProfilePage() {
-  const { user, login } = useAuth();
+  const { user, refreshUser } = useAuth();
   const [saving, setSaving] = useState(false);
   const [avatarUploading, setAvatarUploading] = useState(false);
+  const [changingPassword, setChangingPassword] = useState(false);
   const fileInputRef = useRef(null);
+
+  const { register: registerPwd, handleSubmit: handleSubmitPwd, reset: resetPwd, watch: watchPwd, formState: { errors: pwdErrors } } = useForm();
 
   const { register, handleSubmit, reset, formState: { errors, isDirty } } = useForm();
 
@@ -30,9 +34,8 @@ export default function ProfilePage() {
   const onSubmit = async (data) => {
     setSaving(true);
     try {
-      const res = await updateMyProfile(data);
-      const token = localStorage.getItem('token');
-      login(res.data.data, token);
+      await updateMyProfile(data);
+      await refreshUser();
       toast.success('Profile updated');
       reset(data);
     } catch (err) {
@@ -47,15 +50,27 @@ export default function ProfilePage() {
     if (!file) return;
     setAvatarUploading(true);
     try {
-      const res = await uploadAvatar(file);
-      const token = localStorage.getItem('token');
-      login(res.data.data, token);
+      await uploadAvatar(file);
+      await refreshUser();
       toast.success('Photo updated');
     } catch (err) {
       toast.error(err.response?.data?.message || 'Failed to upload photo');
     } finally {
       setAvatarUploading(false);
       e.target.value = '';
+    }
+  };
+
+  const onChangePassword = async (data) => {
+    setChangingPassword(true);
+    try {
+      await changePassword({ currentPassword: data.currentPassword, newPassword: data.newPassword });
+      toast.success('Password changed successfully');
+      resetPwd();
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to change password');
+    } finally {
+      setChangingPassword(false);
     }
   };
 
@@ -188,20 +203,57 @@ export default function ProfilePage() {
         </form>
       </div>
 
+      {/* Change password */}
+      <div className=”bg-white rounded-xl border border-gray-200 p-6”>
+        <h2 className=”text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4”>Change Password</h2>
+        <form onSubmit={handleSubmitPwd(onChangePassword)} className=”space-y-4”>
+          <Input
+            label=”Current password”
+            type=”password”
+            placeholder=”Your current password”
+            error={pwdErrors.currentPassword?.message}
+            {...registerPwd('currentPassword', { required: 'Current password is required' })}
+          />
+          <Input
+            label=”New password”
+            type=”password”
+            placeholder=”Min. 8 characters”
+            error={pwdErrors.newPassword?.message}
+            {...registerPwd('newPassword', {
+              required: 'New password is required',
+              minLength: { value: 8, message: 'Minimum 8 characters' },
+              pattern: { value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, message: 'Must include uppercase, lowercase and a number' },
+            })}
+          />
+          <Input
+            label=”Confirm new password”
+            type=”password”
+            placeholder=”Re-enter new password”
+            error={pwdErrors.confirmNewPassword?.message}
+            {...registerPwd('confirmNewPassword', {
+              required: 'Please confirm your new password',
+              validate: (v) => v === watchPwd('newPassword') || 'Passwords do not match',
+            })}
+          />
+          <Button type=”submit” loading={changingPassword} size=”sm”>
+            Update password
+          </Button>
+        </form>
+      </div>
+
       {/* Read-only account info */}
-      <div className="bg-gray-50 rounded-xl border border-gray-200 p-5">
-        <h2 className="text-sm font-semibold text-gray-600 mb-3">Account Details</h2>
-        <div className="space-y-2 text-sm">
-          <div className="flex justify-between">
-            <span className="text-gray-500">Email</span>
-            <span className="text-gray-900">{user?.email}</span>
+      <div className=”bg-gray-50 rounded-xl border border-gray-200 p-5”>
+        <h2 className=”text-sm font-semibold text-gray-600 mb-3”>Account Details</h2>
+        <div className=”space-y-2 text-sm”>
+          <div className=”flex justify-between”>
+            <span className=”text-gray-500”>Email</span>
+            <span className=”text-gray-900”>{user?.email}</span>
           </div>
-          <div className="flex justify-between">
-            <span className="text-gray-500">Member since</span>
-            <span className="text-gray-900">{user?.createdAt ? new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }) : '"”'}</span>
+          <div className=”flex justify-between”>
+            <span className=”text-gray-500”>Member since</span>
+            <span className=”text-gray-900”>{user?.createdAt ? new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }) : ''}</span>
           </div>
         </div>
-        <p className="text-xs text-gray-400 mt-3">To change your email or password, please contact your administrator.</p>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/axios';
+import { logoutUser } from '../api/authApi';
 
 const AuthContext = createContext(null);
 
@@ -9,43 +10,49 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  // Silently check if the httpOnly cookie is valid and hydrate user state
   const loadUser = useCallback(async () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      setLoading(false);
-      return;
-    }
     try {
       const { data } = await api.get('/auth/me');
       setUser(data.data);
     } catch {
-      localStorage.removeItem('token');
+      setUser(null); // not logged in — this is fine
     } finally {
       setLoading(false);
     }
   }, []);
 
-  useEffect(() => {
-    loadUser();
-  }, [loadUser]);
+  useEffect(() => { loadUser(); }, [loadUser]);
 
-  const login = (userData, token) => {
-    localStorage.setItem('token', token);
+  // Called after a successful login — cookie is already set server-side
+  const login = (userData) => {
     setUser(userData);
-    if (userData.role === 'ADMIN') {
-      navigate('/admin/dashboard');
+    const params = new URLSearchParams(window.location.search);
+    const from = params.get('from');
+    if (from && from.startsWith('/') && !from.startsWith('//')) {
+      navigate(from, { replace: true });
     } else {
-      navigate('/dashboard');
+      navigate(userData.role === 'ADMIN' ? '/admin/dashboard' : '/dashboard', { replace: true });
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    setUser(null);
-    navigate('/login');
+  // Re-hydrate user state from server (after profile/avatar update)
+  const refreshUser = async () => {
+    try {
+      const { data } = await api.get('/auth/me');
+      setUser(data.data);
+    } catch {
+      setUser(null);
+    }
   };
 
-  const value = { user, loading, login, logout, isAdmin: user?.role === 'ADMIN' };
+  const logout = async () => {
+    try { await logoutUser(); } catch { /* ignore errors — clear client state regardless */ }
+    setUser(null);
+    navigate('/login', { replace: true });
+  };
+
+  const value = { user, loading, login, logout, refreshUser, isAdmin: user?.role === 'ADMIN' };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

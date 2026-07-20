@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { getWorker } from '../../../api/workerApi';
 import { getWorkerReferences, addReference, sendReferenceRequest, deleteReference, getReferenceResponse } from '../../../api/referenceApi';
+import { toggleUserActive } from '../../../api/authApi';
 import ComplianceBadge from '../../../components/workforce/ComplianceBadge';
 
 // ”€”€”€ Helpers ”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€”€
@@ -348,6 +349,7 @@ export default function WorkerDetail() {
   const [worker, setWorker] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [togglingActive, setTogglingActive] = useState(false);
 
   useEffect(() => {
     getWorker(id)
@@ -404,8 +406,26 @@ export default function WorkerDetail() {
             {worker.workerRoles?.length === 0 && <span className="text-xs text-gray-400">No roles assigned</span>}
           </div>
         </div>
-        <div className="text-right text-xs text-gray-400">
-          <p>Joined {new Date(worker.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
+        <div className="text-right space-y-2">
+          <p className="text-xs text-gray-400">Joined {new Date(worker.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
+          <button
+            onClick={async () => {
+              if (!window.confirm(`${worker.isActive ? 'Deactivate' : 'Reactivate'} ${worker.name}'s account?`)) return;
+              setTogglingActive(true);
+              try {
+                const res = await toggleUserActive(worker.id);
+                setWorker((prev) => ({ ...prev, isActive: res.data.data.isActive }));
+                toast.success(res.data.message);
+              } catch (err) {
+                toast.error(err.response?.data?.message || 'Failed to update account status');
+              } finally { setTogglingActive(false); }
+            }}
+            disabled={togglingActive}
+            className={`text-xs font-semibold px-3 py-1.5 rounded-lg border disabled:opacity-50 transition-colors ${worker.isActive ? 'border-red-200 text-red-600 hover:bg-red-50' : 'border-green-200 text-green-700 hover:bg-green-50'}`}
+          >
+            {togglingActive ? '…' : worker.isActive ? 'Deactivate account' : 'Reactivate account'}
+          </button>
+          {!worker.isActive && <p className="text-xs text-red-500 font-medium">Account deactivated</p>}
         </div>
       </div>
 

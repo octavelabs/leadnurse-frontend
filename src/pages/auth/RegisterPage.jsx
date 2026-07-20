@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { registerUser } from '../../api/authApi';
-import { useAuth } from '../../context/AuthContext';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
 
@@ -12,15 +11,14 @@ const LOGO_URL = 'https://leadnurse.co.uk/wp-content/uploads/2026/02/Lead-Nurse-
 export default function RegisterPage() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const [registered, setRegistered] = useState(false);
 
   const onSubmit = async (data) => {
     setLoading(true);
     try {
       const { confirmPassword, ...payload } = data;
-      const res = await registerUser(payload);
-      toast.success('Account created successfully!');
-      login(res.data.data.user, res.data.data.token);
+      await registerUser(payload);
+      setRegistered(true);
     } catch (err) {
       toast.error(err.response?.data?.message || 'Registration failed');
     } finally {
@@ -58,6 +56,22 @@ export default function RegisterPage() {
             <p className="text-gray-500 mt-1 text-sm">Join Lead Nurse and start learning today</p>
           </div>
 
+          {registered ? (
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 text-center">
+              <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h2 className="text-lg font-bold text-gray-900 mb-2">Check your email</h2>
+              <p className="text-sm text-gray-500 leading-relaxed mb-6">
+                We've sent a verification link to your email address. Click the link to activate your account, then log in.
+              </p>
+              <Link to="/login" className="inline-flex items-center justify-center w-full py-3 px-4 bg-primary-700 text-white text-sm font-semibold rounded-xl hover:bg-primary-800">
+                Go to login
+              </Link>
+            </div>
+          ) : (
           <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <Input
@@ -119,6 +133,7 @@ export default function RegisterPage() {
               </p>
             </div>
           </div>
+          )}
         </div>
       </div>
     </div>
