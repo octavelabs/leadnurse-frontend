@@ -29,8 +29,8 @@ export default function CreateEditShift() {
         reset({
           ...s,
           date: s.date?.split('T')[0],
-          startTime: new Date(s.startTime).toISOString().slice(0, 16),
-          endTime: new Date(s.endTime).toISOString().slice(0, 16),
+          startTime: new Date(s.startTime).toISOString().slice(11, 16),
+          endTime: new Date(s.endTime).toISOString().slice(11, 16),
         });
       });
     }
@@ -41,8 +41,10 @@ export default function CreateEditShift() {
     try {
       const payload = {
         ...data,
-        hourlyRate: parseFloat(data.hourlyRate),
-        facilityHourlyRate: parseFloat(data.facilityHourlyRate),
+        startTime: new Date(`${data.date}T${data.startTime}`).toISOString(),
+        endTime: new Date(`${data.date}T${data.endTime}`).toISOString(),
+        hourlyRate: data.hourlyRate ? parseFloat(data.hourlyRate) : 0,
+        facilityHourlyRate: data.facilityHourlyRate ? parseFloat(data.facilityHourlyRate) : 0,
         requiredWorkers: parseInt(data.requiredWorkers),
       };
       if (isEdit) await updateShift(id, payload);
@@ -85,8 +87,8 @@ export default function CreateEditShift() {
 
           <div className="grid grid-cols-3 gap-4">
             <Input label="Date" type="date" error={errors.date?.message} {...register('date', { required: 'Date is required' })} />
-            <Input label="Start Time" type="datetime-local" error={errors.startTime?.message} {...register('startTime', { required: true })} />
-            <Input label="End Time" type="datetime-local" error={errors.endTime?.message} {...register('endTime', { required: true })} />
+            <Input label="Start Time" type="time" error={errors.startTime?.message} {...register('startTime', { required: true })} />
+            <Input label="End Time" type="time" error={errors.endTime?.message} {...register('endTime', { required: true })} />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -103,10 +105,10 @@ export default function CreateEditShift() {
           <div className="grid grid-cols-2 gap-4">
             <Input label="Employee Hourly Rate (£)" type="number" step="0.01" placeholder="12.50"
               error={errors.hourlyRate?.message}
-              {...register('hourlyRate', { required: 'Employee rate required', min: { value: 0.01, message: 'Must be > 0' } })} />
+              {...register('hourlyRate', { min: { value: 0, message: 'Must be 0 or more' } })} />
             <Input label="Facility Hourly Rate (£)" type="number" step="0.01" placeholder="25.00"
               error={errors.facilityHourlyRate?.message}
-              {...register('facilityHourlyRate', { required: 'Facility rate required', min: { value: 0.01, message: 'Must be > 0' } })} />
+              {...register('facilityHourlyRate', { min: { value: 0, message: 'Must be 0 or more' } })} />
           </div>
 
           <div>
